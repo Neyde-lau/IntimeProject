@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-Sep-2019 17:50:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hiber.entity.Docente" table="docente" catalog="dbintime" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeDocente" type="string">
+            <column name="nomeDocente" not-null="true" />
+        </property>
+        <property name="categoria" type="string">
+            <column name="categoria" />
+        </property>
+        <property name="nivel" type="string">
+            <column name="nivel" />
+        </property>
+    </class>
+</hibernate-mapping>
