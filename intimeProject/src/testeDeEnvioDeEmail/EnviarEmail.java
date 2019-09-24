@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testeDeEnvioDeEmail;
+package view;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.SimpleEmail;
@@ -12,8 +12,8 @@ public class EnviarEmail {
 	
 	public static void main(String []args) {
 		
-		String meuEmail = "meuEmail@gmail.com";
-		String senha = " senha ";
+		String meuEmail = "sistemaintime@gmail.com";
+		String senha = "#tempotempo";
 		
 		SimpleEmail email = new SimpleEmail();
 		email.setHostName("smtp.gmail.com");
@@ -23,11 +23,11 @@ public class EnviarEmail {
 		
 		try {
 			email.setFrom(meuEmail);
-			email.setSubject("Teste de envio de email");
-			email.setMsg("Este e o email teste do programa java");
-			email.addTo("psigauque.ps@gmail.com");
+			email.setSubject("Assunto");
+			email.setMsg("Corpo da mensagem");
+			email.addTo("emaill@gmail.com" );
 			email.send();
-			System.out.print("Enviado com sucesso!");
+			//System.out.print("Enviado com sucesso!");
 			
 			
 		}catch(Exception e) {
