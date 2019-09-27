@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-Sep-2019 19:25:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbintime" name="hiber.entity.Utilizador" optimistic-lock="version" table="utilizador">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nomeUser" type="string">
+      <column length="200" name="nomeUser"/>
+    </property>
+    <property name="entidade" type="string">
+      <column length="200" name="entidade"/>
+    </property>
+    <property name="senha" type="string">
+      <column length="200" name="senha"/>
+    </property>
+    <property name="email" type="string">
+      <column length="200" name="email"/>
+    </property>
+  </class>
+</hibernate-mapping>

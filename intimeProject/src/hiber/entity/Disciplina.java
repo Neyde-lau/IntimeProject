@@ -1,5 +1,5 @@
 package hiber.entity;
-// Generated 23-Sep-2019 17:50:31 by Hibernate Tools 4.3.1
+// Generated 27-Sep-2019 19:25:48 by Hibernate Tools 4.3.1
 
 
 
@@ -9,30 +9,41 @@ package hiber.entity;
 public class Disciplina  implements java.io.Serializable {
 
 
-     private Integer codigoDisciplina;
+     private Integer codigo;
+     private Docente docente;
      private String nomeDisciplina;
-     private Integer credito;
-     private Integer cargaHoraria;
+     private String regente;
+     private String assistente;
 
     public Disciplina() {
     }
 
 	
-    public Disciplina(String nomeDisciplina) {
+    public Disciplina(Docente docente, String nomeDisciplina) {
+        this.docente = docente;
         this.nomeDisciplina = nomeDisciplina;
     }
-    public Disciplina(String nomeDisciplina, Integer credito, Integer cargaHoraria) {
+    public Disciplina(Docente docente, String nomeDisciplina,String regente, String assistente) {
+       this.docente = docente;
        this.nomeDisciplina = nomeDisciplina;
-       this.credito = credito;
-       this.cargaHoraria = cargaHoraria;
+
+       this.regente = regente;
+       this.assistente = assistente;
     }
    
-    public Integer getCodigoDisciplina() {
-        return this.codigoDisciplina;
+    public Integer getCodigo() {
+        return this.codigo;
     }
     
-    public void setCodigoDisciplina(Integer codigoDisciplina) {
-        this.codigoDisciplina = codigoDisciplina;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+    public Docente getDocente() {
+        return this.docente;
+    }
+    
+    public void setDocente(Docente docente) {
+        this.docente = docente;
     }
     public String getNomeDisciplina() {
         return this.nomeDisciplina;
@@ -41,19 +52,21 @@ public class Disciplina  implements java.io.Serializable {
     public void setNomeDisciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
     }
-    public Integer getCredito() {
-        return this.credito;
+
+    public String getRegente() {
+        return regente;
+    }
+
+    
+    public void setRegente(String regente) {
+        this.regente = regente;
+    }
+    public String getAssistente() {
+        return this.assistente;
     }
     
-    public void setCredito(Integer credito) {
-        this.credito = credito;
-    }
-    public Integer getCargaHoraria() {
-        return this.cargaHoraria;
-    }
-    
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
+    public void setAssistente(String assistente) {
+        this.assistente = assistente;
     }
 
 
