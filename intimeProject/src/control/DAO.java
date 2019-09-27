@@ -5,7 +5,10 @@
  */
 package control;
 
+import hiber.entity.Disciplina;
 import hiber.entity.Docente;
+import hiber.entity.Turma;
+import hiber.entity.Utilizador;
 import hiber.util.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +58,43 @@ public class DAO<T> {
             session.close();
         }
     }
-    public void apagar(int codigo) {
+    public void apagarDisciplina(int codigo) {
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            Disciplina t = (Disciplina) session.load(Disciplina.class, new Integer(codigo)); //rever de modo que usando generics funcione para todas classes
+            session.delete(t);
+            session.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (tran != null) {
+                tran.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+        public void apagarTurma(int codigo) {
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            Turma t = (Turma) session.load(Turma.class, new Integer(codigo)); //rever de modo que usando generics funcione para todas classes
+            session.delete(t);
+            session.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (tran != null) {
+                tran.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+        public void apagarDocente(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -73,13 +112,76 @@ public class DAO<T> {
             session.close();
         }
     }
-        public List<T> ler() {
+            public void apagarUtilizador(int codigo) {
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            Utilizador t = (Utilizador) session.load(Utilizador.class, new Integer(codigo)); //rever de modo que usando generics funcione para todas classes
+            session.delete(t);
+            session.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (tran != null) {
+                tran.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+        public List<T> lerDocente() {
         List<T> t = new ArrayList<T>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
             t = session.createQuery("from Docente").list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return t;
+    }
+           public List<T> lerUtilizador() {
+        List<T> t = new ArrayList<T>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            t = session.createQuery("from Utilizador").list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return t;
+    }
+              public List<T> lerDisciplina() {
+        List<T> t = new ArrayList<T>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            t = session.createQuery("from Disciplina").list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return t;
+    }
+                            public List<T> lerTurma() {
+        List<T> t = new ArrayList<T>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            t = session.createQuery("from Turma").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {

@@ -1,21 +1,29 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23-Sep-2019 17:50:32 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-Sep-2019 19:25:48 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="hiber.entity.Disciplina" table="disciplina" catalog="dbintime" optimistic-lock="version">
-        <id name="codigoDisciplina" type="java.lang.Integer">
-            <column name="codigoDisciplina" />
-            <generator class="identity" />
-        </id>
-        <property name="nomeDisciplina" type="string">
-            <column name="nomeDisciplina" not-null="true" />
-        </property>
-        <property name="credito" type="java.lang.Integer">
-            <column name="credito" />
-        </property>
-        <property name="cargaHoraria" type="java.lang.Integer">
-            <column name="cargaHoraria" />
-        </property>
-    </class>
+  <class catalog="dbintime" name="hiber.entity.Disciplina" optimistic-lock="version" table="disciplina">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="foreign">
+        <param name="property">docente</param>
+      </generator>
+    </id>
+    <one-to-one class="hiber.entity.Docente" constrained="true" name="docente"/>
+    <property name="nomeDisciplina" type="string">
+      <column name="nomeDisciplina" not-null="true"/>
+    </property>
+    <property name="credito" type="java.lang.Integer">
+      <column name="credito"/>
+    </property>
+    <property name="cargaHoraria" type="java.lang.Integer">
+      <column name="cargaHoraria"/>
+    </property>
+    <property name="regente" type="string">
+      <column length="100" name="regente"/>
+    </property>
+    <property name="assistente" type="string">
+      <column length="100" name="assistente"/>
+    </property>
+  </class>
 </hibernate-mapping>

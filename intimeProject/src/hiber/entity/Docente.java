@@ -1,5 +1,5 @@
 package hiber.entity;
-// Generated 23-Sep-2019 17:50:31 by Hibernate Tools 4.3.1
+// Generated 27-Sep-2019 19:25:48 by Hibernate Tools 4.3.1
 
 
 
@@ -13,6 +13,7 @@ public class Docente  implements java.io.Serializable {
      private String nomeDocente;
      private String categoria;
      private String nivel;
+     private Disciplina disciplina;
 
     public Docente() {
     }
@@ -21,10 +22,11 @@ public class Docente  implements java.io.Serializable {
     public Docente(String nomeDocente) {
         this.nomeDocente = nomeDocente;
     }
-    public Docente(String nomeDocente, String categoria, String nivel) {
+    public Docente(String nomeDocente, String categoria, String nivel, Disciplina disciplina) {
        this.nomeDocente = nomeDocente;
        this.categoria = categoria;
        this.nivel = nivel;
+       this.disciplina = disciplina;
     }
    
     public Integer getCodigo() {
@@ -54,6 +56,13 @@ public class Docente  implements java.io.Serializable {
     
     public void setNivel(String nivel) {
         this.nivel = nivel;
+    }
+    public Disciplina getDisciplina() {
+        return this.disciplina;
+    }
+    
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 
 
