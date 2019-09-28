@@ -7,7 +7,7 @@ package view;
 
 import control.DAO;
 
-import hiber.entity.Disciplina;
+import model.Disciplina;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;

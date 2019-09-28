@@ -7,8 +7,8 @@ package view;
 
 import control.DAO;
 
-import hiber.entity.Disciplina;
-import hiber.entity.Docente;
+import model.Disciplina;
+import model.Docente;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
