@@ -5,11 +5,11 @@
  */
 package control;
 
-import hiber.entity.Disciplina;
-import hiber.entity.Docente;
-import hiber.entity.Turma;
-import hiber.entity.Utilizador;
-import hiber.util.NewHibernateUtil;
+import model.Disciplina;
+import model.Docente;
+import model.Turma;
+import model.Utilizador;
+import util.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;

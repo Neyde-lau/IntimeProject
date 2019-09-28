@@ -45,7 +45,7 @@ public class FormDocente extends javax.swing.JFrame {
         for (Docente d : dao.lerDocente()) {
             modelo.addRow(new Object[]{
                 d.getCodigo(),
-                d.getNomeDocente(),
+                d.getNome(),
                 d.getCategoria(),
             d.getNivel()});
         }
@@ -493,7 +493,7 @@ public class FormDocente extends javax.swing.JFrame {
         Docente d = new Docente();
 
         DAO<Docente> dao = new DAO<>();
-        d.setNomeDocente(textNome.getText());
+        d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
         d.setNivel((String) cbNivel.getSelectedItem());
 
@@ -516,7 +516,7 @@ public class FormDocente extends javax.swing.JFrame {
         // TODO add your handling code here:
         Docente d = new Docente();
         DAO<Docente> dao = new DAO<>();
-        d.setNomeDocente(textNome.getText());
+        d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
         d.setNivel((String) cbNivel.getSelectedItem());
         d.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
@@ -534,7 +534,7 @@ public class FormDocente extends javax.swing.JFrame {
         Docente d = new Docente();
         // DocenteDao dao = new DocenteDao();
         DAO<Docente> dao = new DAO<>();
-        d.setNomeDocente(textNome.getText());
+        d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
         d.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagarDocente(d.getCodigo());

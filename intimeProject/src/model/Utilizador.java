@@ -36,6 +36,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Utilizador.findByEmail", query = "SELECT u FROM Utilizador u WHERE u.email = :email")})
 public class Utilizador implements Serializable {
 
+    @OneToMany(mappedBy = "codigoUtilizador")
+    private Collection<Turma> turmaCollection;
+
+    @OneToMany(mappedBy = "codigoUtilizador")
+    private Collection<Docente> docenteCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,10 +56,6 @@ public class Utilizador implements Serializable {
     private String senha;
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "codigoUtilizador")
-    private Collection<Docente> docenteCollection;
-    @OneToMany(mappedBy = "codigoUtilizador")
-    private Collection<Turma> turmaCollection;
 
     public Utilizador() {
     }
@@ -102,24 +104,6 @@ public class Utilizador implements Serializable {
         this.email = email;
     }
 
-    @XmlTransient
-    public Collection<Docente> getDocenteCollection() {
-        return docenteCollection;
-    }
-
-    public void setDocenteCollection(Collection<Docente> docenteCollection) {
-        this.docenteCollection = docenteCollection;
-    }
-
-    @XmlTransient
-    public Collection<Turma> getTurmaCollection() {
-        return turmaCollection;
-    }
-
-    public void setTurmaCollection(Collection<Turma> turmaCollection) {
-        this.turmaCollection = turmaCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -143,6 +127,24 @@ public class Utilizador implements Serializable {
     @Override
     public String toString() {
         return "model.Utilizador[ codigo=" + codigo + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Docente> getDocenteCollection() {
+        return docenteCollection;
+    }
+
+    public void setDocenteCollection(Collection<Docente> docenteCollection) {
+        this.docenteCollection = docenteCollection;
+    }
+
+    @XmlTransient
+    public Collection<Turma> getTurmaCollection() {
+        return turmaCollection;
+    }
+
+    public void setTurmaCollection(Collection<Turma> turmaCollection) {
+        this.turmaCollection = turmaCollection;
     }
     
 }

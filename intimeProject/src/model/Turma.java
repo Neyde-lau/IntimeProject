@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,9 +30,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t")
     , @NamedQuery(name = "Turma.findByCodigo", query = "SELECT t FROM Turma t WHERE t.codigo = :codigo")
     , @NamedQuery(name = "Turma.findByCurso", query = "SELECT t FROM Turma t WHERE t.curso = :curso")
+    , @NamedQuery(name = "Turma.findByRegime", query = "SELECT t FROM Turma t WHERE t.regime = :regime")
     , @NamedQuery(name = "Turma.findByTutor", query = "SELECT t FROM Turma t WHERE t.tutor = :tutor")
     , @NamedQuery(name = "Turma.findByNivel", query = "SELECT t FROM Turma t WHERE t.nivel = :nivel")})
-public class Turma implements Serializable {
+public class Turma extends Utilizador implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,12 +44,12 @@ public class Turma implements Serializable {
     @Basic(optional = false)
     @Column(name = "curso")
     private String curso;
+    @Column(name = "regime")
+    private String regime;
     @Column(name = "tutor")
     private String tutor;
     @Column(name = "nivel")
-    private Integer nivel;
-    @OneToMany(mappedBy = "codigoTurma")
-    private Collection<Docenteturma> docenteturmaCollection;
+    private String nivel;
     @JoinColumn(name = "codigoUtilizador", referencedColumnName = "codigo")
     @ManyToOne
     private Utilizador codigoUtilizador;
@@ -84,6 +82,14 @@ public class Turma implements Serializable {
         this.curso = curso;
     }
 
+    public String getRegime() {
+        return regime;
+    }
+
+    public void setRegime(String regime) {
+        this.regime = regime;
+    }
+
     public String getTutor() {
         return tutor;
     }
@@ -92,21 +98,12 @@ public class Turma implements Serializable {
         this.tutor = tutor;
     }
 
-    public Integer getNivel() {
+    public String getNivel() {
         return nivel;
     }
 
-    public void setNivel(Integer nivel) {
+    public void setNivel(String nivel) {
         this.nivel = nivel;
-    }
-
-    @XmlTransient
-    public Collection<Docenteturma> getDocenteturmaCollection() {
-        return docenteturmaCollection;
-    }
-
-    public void setDocenteturmaCollection(Collection<Docenteturma> docenteturmaCollection) {
-        this.docenteturmaCollection = docenteturmaCollection;
     }
 
     public Utilizador getCodigoUtilizador() {

@@ -6,8 +6,8 @@
 package view;
 
 import control.DAO;
-import hiber.entity.Turma;
-import hiber.entity.Utilizador;
+import model.Turma;
+import model.Utilizador;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;

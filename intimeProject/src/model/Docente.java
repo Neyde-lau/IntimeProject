@@ -6,9 +6,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,8 +30,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Docente.findAll", query = "SELECT d FROM Docente d")
     , @NamedQuery(name = "Docente.findByCodigo", query = "SELECT d FROM Docente d WHERE d.codigo = :codigo")
     , @NamedQuery(name = "Docente.findByNome", query = "SELECT d FROM Docente d WHERE d.nome = :nome")
+    , @NamedQuery(name = "Docente.findByNivel", query = "SELECT d FROM Docente d WHERE d.nivel = :nivel")
     , @NamedQuery(name = "Docente.findByCategoria", query = "SELECT d FROM Docente d WHERE d.categoria = :categoria")})
-public class Docente implements Serializable {
+public class Docente extends Utilizador implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,14 +43,10 @@ public class Docente implements Serializable {
     @Basic(optional = false)
     @Column(name = "nome")
     private String nome;
+    @Column(name = "nivel")
+    private String nivel;
     @Column(name = "categoria")
     private String categoria;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "docente")
-    private Disciplina disciplina;
-    @OneToMany(mappedBy = "codigoDocente")
-    private Collection<Docentedisciplina> docentedisciplinaCollection;
-    @OneToMany(mappedBy = "codigoDocente")
-    private Collection<Docenteturma> docenteturmaCollection;
     @JoinColumn(name = "codigoUtilizador", referencedColumnName = "codigo")
     @ManyToOne
     private Utilizador codigoUtilizador;
@@ -87,38 +79,20 @@ public class Docente implements Serializable {
         this.nome = nome;
     }
 
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
     public String getCategoria() {
         return categoria;
     }
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-
-    @XmlTransient
-    public Collection<Docentedisciplina> getDocentedisciplinaCollection() {
-        return docentedisciplinaCollection;
-    }
-
-    public void setDocentedisciplinaCollection(Collection<Docentedisciplina> docentedisciplinaCollection) {
-        this.docentedisciplinaCollection = docentedisciplinaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Docenteturma> getDocenteturmaCollection() {
-        return docenteturmaCollection;
-    }
-
-    public void setDocenteturmaCollection(Collection<Docenteturma> docenteturmaCollection) {
-        this.docenteturmaCollection = docenteturmaCollection;
     }
 
     public Utilizador getCodigoUtilizador() {
