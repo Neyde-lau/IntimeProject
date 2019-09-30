@@ -6,8 +6,8 @@
 package view;
 
 import control.DAO;
-import hiber.entity.Docente;
-import hiber.entity.Utilizador;
+import model.Docente;
+import model.Utilizador;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.sql.SQLException;
@@ -44,7 +44,7 @@ public class FormUser extends javax.swing.JFrame {
         for (Utilizador u : dao.lerUtilizador()) {
             modelo.addRow(new Object[]{
                 u.getCodigo(),
-                u.getNomeUser(),
+                u.getNome(),
                 u.getEntidade(),
                 u.getSenha(),});
         }
@@ -531,7 +531,7 @@ public class FormUser extends javax.swing.JFrame {
         Utilizador u = new Utilizador();
 
         DAO<Utilizador> dao = new DAO<>();
-        u.setNomeUser(textNome.getText());
+        u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
       
         u.setSenha(textSenha.getText());
@@ -557,7 +557,7 @@ public void limparCampos(){
         // TODO add your handling code here:
         Utilizador u = new Utilizador();
         DAO<Utilizador> dao = new DAO<>();
-        u.setNomeUser(textNome.getText());
+        u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
       
         u.setSenha(textSenha.getText());
@@ -593,7 +593,7 @@ public void limparCampos(){
         Utilizador u = new Utilizador();
         // DocenteDao dao = new DocenteDao();
         DAO<Docente> dao = new DAO<>();
-        u.setNomeUser(textNome.getText());
+        u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
         u.setSenha(textSenha.getText());
         u.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));

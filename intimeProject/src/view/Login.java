@@ -5,6 +5,12 @@
  */
 package view;
 
+import control.DAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Utilizador;
+
 /**
  *
  * @author user
@@ -36,9 +42,9 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jNome1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jSenha = new javax.swing.JPasswordField();
+        textNome = new javax.swing.JTextField();
+        jbLogin = new javax.swing.JButton();
+        textSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,34 +73,39 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-password-24.png"))); // NOI18N
 
-        jNome1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
-        jNome1.setForeground(new java.awt.Color(204, 204, 204));
-        jNome1.setBorder(null);
-        jNome1.setCaretColor(new java.awt.Color(71, 120, 197));
-        jNome1.setOpaque(false);
-        jNome1.addFocusListener(new java.awt.event.FocusAdapter() {
+        textNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        textNome.setForeground(new java.awt.Color(204, 204, 204));
+        textNome.setBorder(null);
+        textNome.setCaretColor(new java.awt.Color(71, 120, 197));
+        textNome.setOpaque(false);
+        textNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jNome1FocusGained(evt);
+                textNomeFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jNome1FocusLost(evt);
+                textNomeFocusLost(evt);
             }
         });
-        jNome1.addActionListener(new java.awt.event.ActionListener() {
+        textNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNome1ActionPerformed(evt);
+                textNomeActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Aceder ao Sistema");
+        jbLogin.setText("Aceder ao Sistema");
+        jbLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLoginActionPerformed(evt);
+            }
+        });
 
-        jSenha.setForeground(new java.awt.Color(204, 204, 204));
-        jSenha.setBorder(null);
-        jSenha.setCaretColor(new java.awt.Color(71, 120, 197));
-        jSenha.setOpaque(false);
-        jSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+        textSenha.setForeground(new java.awt.Color(204, 204, 204));
+        textSenha.setBorder(null);
+        textSenha.setCaretColor(new java.awt.Color(71, 120, 197));
+        textSenha.setOpaque(false);
+        textSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jSenhaFocusGained(evt);
+                textSenhaFocusGained(evt);
             }
         });
 
@@ -117,8 +128,8 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator1)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                            .addComponent(jNome1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                            .addComponent(jSenha))
+                            .addComponent(textNome, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                            .addComponent(textSenha))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
@@ -126,7 +137,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(178, 178, 178))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(171, 171, 171)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,7 +149,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(104, 104, 104)
                         .addComponent(jLabel4)
                         .addGap(99, 99, 99)
-                        .addComponent(jNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -147,12 +158,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
 
@@ -170,24 +181,43 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jNome1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jNome1FocusGained
+    private void textNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNomeFocusGained
         // TODO add your handling code here:
       //  jNome1.setText("");
-    }//GEN-LAST:event_jNome1FocusGained
+    }//GEN-LAST:event_textNomeFocusGained
 
-    private void jNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNome1ActionPerformed
+    private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jNome1ActionPerformed
+    }//GEN-LAST:event_textNomeActionPerformed
 
-    private void jNome1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jNome1FocusLost
+    private void textNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textNomeFocusLost
         // TODO add your handling code here:
        // jNome1.setText("Insira o nome do usuario");
-    }//GEN-LAST:event_jNome1FocusLost
+    }//GEN-LAST:event_textNomeFocusLost
 
-    private void jSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSenhaFocusGained
+    private void textSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textSenhaFocusGained
         // TODO add your handling code here:
        // jSenha.setText("");
-    }//GEN-LAST:event_jSenhaFocusGained
+    }//GEN-LAST:event_textSenhaFocusGained
+
+    private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
+        // TODO add your handling code here:
+            Utilizador u = new Utilizador();
+            DAO<Utilizador> dao = new DAO<>();
+         if(dao.autenticarUtilizador(textNome.getText(),textSenha.getText())){
+             if(u.getEntidade().equals("docente")){
+                 try {
+                     FormUser fu = new FormUser();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }else if(u.getEntidade().equals("turma")){
+                 
+             }
+         }   
+        
+        
+    }//GEN-LAST:event_jbLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,15 +255,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jNome1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jSenha;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton jbLogin;
+    private javax.swing.JTextField textNome;
+    private javax.swing.JPasswordField textSenha;
     // End of variables declaration//GEN-END:variables
 }

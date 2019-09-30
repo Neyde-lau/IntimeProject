@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-Sep-2019 16:34:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Docente" table="docente" catalog="dbintime" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="utilizador" class="model.Utilizador" fetch="select">
+            <column name="codigoUtilizador" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" not-null="true" />
+        </property>
+        <property name="categoria" type="string">
+            <column name="categoria" />
+        </property>
+        <set name="docentedisciplinas" table="docentedisciplina" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigoDocente" />
+            </key>
+            <one-to-many class="model.Docentedisciplina" />
+        </set>
+        <set name="docenteturmas" table="docenteturma" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigoDocente" />
+            </key>
+            <one-to-many class="model.Docenteturma" />
+        </set>
+        <one-to-one name="disciplina" class="model.Disciplina"></one-to-one>
+    </class>
+</hibernate-mapping>

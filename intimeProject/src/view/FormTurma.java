@@ -6,8 +6,8 @@
 package view;
 
 import control.DAO;
-import hiber.entity.Turma;
-import hiber.entity.Utilizador;
+import model.Turma;
+import model.Utilizador;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -45,8 +45,9 @@ public class FormTurma extends javax.swing.JFrame {
                 u.getCodigo(),
                 u.getCurso(),
                 u.getNivel(),
-                u.getRegime(),
-                u.getEmail(),});
+                u.getTutor(),
+               // u.getRegime(),
+                });
         }
     }
 
@@ -545,9 +546,9 @@ public class FormTurma extends javax.swing.JFrame {
 
         DAO<Turma> dao = new DAO<>();
         t.setCurso((String) cbCurso.getSelectedItem());
-        t.setRegime((String) cbRegime.getSelectedItem());
-        t.setNivel((String) cbNivel.getSelectedItem());
-        t.setEmail(textEmail.getText());
+        t.setTutor((String) cbRegime.getSelectedItem());
+        t.setNivel((Integer) cbNivel.getSelectedItem());
+       // t.setEmail(textEmail.getText());
         
 
         dao.gravar(t);
@@ -571,9 +572,9 @@ public void limparCampos(){
 
         DAO<Turma> dao = new DAO<>();
         t.setCurso((String) cbCurso.getSelectedItem());
-        t.setRegime((String) cbRegime.getSelectedItem());
-        t.setNivel((String) cbNivel.getSelectedItem());
-        t.setEmail(textEmail.getText());
+        t.setTutor((String) cbRegime.getSelectedItem());
+        t.setNivel((Integer) cbNivel.getSelectedItem());
+        //t.setEmail(textEmail.getText());
         t.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.actualizar(t);
         try {
@@ -608,9 +609,9 @@ public void limparCampos(){
 
         DAO<Turma> dao = new DAO<>();
         t.setCurso((String) cbCurso.getSelectedItem());
-        t.setRegime((String) cbRegime.getSelectedItem());
-        t.setNivel((String) cbNivel.getSelectedItem());
-        t.setEmail(textEmail.getText());
+        t.setTutor((String) cbRegime.getSelectedItem());
+        t.setNivel((Integer) cbNivel.getSelectedItem());
+       // t.setEmail(textEmail.getText());
         t.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagarTurma(t.getCodigo());
         limparCampos();

@@ -7,7 +7,7 @@ package view;
 
 import control.DAO;
 
-import hiber.entity.Disciplina;
+import model.Disciplina;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import model.Docentedisciplina;
 import org.hibernate.Query;
 
 /**
@@ -54,7 +55,7 @@ public class FormDisciplina extends javax.swing.JFrame {
         for (Disciplina d : dao.lerDisciplina()) {
             modelo.addRow(new Object[]{
                 d.getCodigo(),
-                d.getNomeDisciplina(),
+                d.getNome(),
                
                 d.getAssistente(),
                 d.getRegente(),
@@ -543,8 +544,10 @@ public class FormDisciplina extends javax.swing.JFrame {
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
         Disciplina d = new Disciplina();
+        Docentedisciplina dd = new Docentedisciplina();
             DAO<Disciplina> dao = new DAO<>();
-        d.setNomeDisciplina(textNome.getText());
+  
+        d.setNome(textNome.getText());
         d.setAssistente(textAssistente.getText());
         d.setRegente(textRegente.getText());
         dao.gravar(d);
@@ -560,6 +563,7 @@ public class FormDisciplina extends javax.swing.JFrame {
         textNome.setText("");
         textAssistente.setText("");
         textRegente.setText("");
+        textCarga.setText("");
     }
     
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-Sep-2019 16:34:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Docenteturma" table="docenteturma" catalog="dbintime" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="docente" class="model.Docente" fetch="select">
+            <column name="codigoDocente" />
+        </many-to-one>
+        <many-to-one name="turma" class="model.Turma" fetch="select">
+            <column name="codigoTurma" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

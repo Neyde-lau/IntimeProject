@@ -5,13 +5,17 @@
  */
 package control;
 
-import hiber.entity.Disciplina;
-import hiber.entity.Docente;
-import hiber.entity.Turma;
-import hiber.entity.Utilizador;
+import model.Disciplina;
+import model.Docentedisciplina;
+import model.Docente;
+import model.Turma;
+import model.Utilizador;
 import hiber.util.NewHibernateUtil;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,7 +32,7 @@ public class DAO<T> {
         SessionFactory sf = NewHibernateUtil.getSessionFactory();
         Session sec = sf.openSession();
         Transaction tx = sec.beginTransaction();
-        
+
         try {
 
             sec.save(t);
@@ -41,7 +45,8 @@ public class DAO<T> {
             sec.close();
         }
     }
-     public void actualizar(T t) {
+
+    public void actualizar(T t) {
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -58,6 +63,7 @@ public class DAO<T> {
             session.close();
         }
     }
+
     public void apagarDisciplina(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -76,7 +82,8 @@ public class DAO<T> {
             session.close();
         }
     }
-        public void apagarTurma(int codigo) {
+
+    public void apagarTurma(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -94,7 +101,8 @@ public class DAO<T> {
             session.close();
         }
     }
-        public void apagarDocente(int codigo) {
+
+    public void apagarDocente(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -112,7 +120,8 @@ public class DAO<T> {
             session.close();
         }
     }
-            public void apagarUtilizador(int codigo) {
+
+    public void apagarUtilizador(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -130,7 +139,8 @@ public class DAO<T> {
             session.close();
         }
     }
-        public List<T> lerDocente() {
+
+    public List<T> lerDocente() {
         List<T> t = new ArrayList<T>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -145,7 +155,8 @@ public class DAO<T> {
         }
         return t;
     }
-           public List<T> lerUtilizador() {
+
+    public List<T> lerUtilizador() {
         List<T> t = new ArrayList<T>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -160,7 +171,8 @@ public class DAO<T> {
         }
         return t;
     }
-              public List<T> lerDisciplina() {
+
+    public List<T> lerDisciplina() {
         List<T> t = new ArrayList<T>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -175,7 +187,8 @@ public class DAO<T> {
         }
         return t;
     }
-                            public List<T> lerTurma() {
+
+    public List<T> lerTurma() {
         List<T> t = new ArrayList<T>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -190,8 +203,8 @@ public class DAO<T> {
         }
         return t;
     }
-        
-          public T Pesquisa(String nome) {
+
+    public T Pesquisa(String nome) {
         T t = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -208,5 +221,34 @@ public class DAO<T> {
             session.close();
         }
         return t;
+    }
+
+    public boolean autenticarUtilizador(String nome, String senha) {
+        {
+            Session session = NewHibernateUtil.getSessionFactory().openSession();
+            Transaction tx = null;
+            try {
+                tx = session.beginTransaction();
+                List<?> lst = session.createQuery("from utilizador").list();
+                for (Iterator<?> iterator
+                        = lst.iterator(); iterator.hasNext();) {
+                    Utilizador ut = (Utilizador) iterator.next();
+                    if (ut.getNome().equals(nome) && ut.getSenha().equals(senha)) {
+                        JOptionPane.showMessageDialog(null, "Credenciais correctas!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "nome ou senha incorrectos!");
+                    }
+                }
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+        }
+
     }
 }
