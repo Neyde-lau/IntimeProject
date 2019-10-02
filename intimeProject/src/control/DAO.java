@@ -10,7 +10,7 @@ import model.Docentedisciplina;
 import model.Docente;
 import model.Turma;
 import model.Utilizador;
-import hiber.util.NewHibernateUtil;
+import util.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -240,6 +240,7 @@ public class DAO<T> {
                     }
                 }
                 tx.commit();
+                return true;
             } catch (HibernateException e) {
                 if (tx != null) {
                     tx.rollback();
@@ -249,6 +250,7 @@ public class DAO<T> {
                 session.close();
             }
         }
+        return false;
 
     }
 }
