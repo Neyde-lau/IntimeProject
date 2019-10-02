@@ -3,20 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Docente.hbm.xml</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Turma.hbm.xml</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDocente.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Utilizador.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDisciplina.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/Login.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormUser.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/hibernate.reveng.xml</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Disciplina.hbm.xml</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Docentedisciplina.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Disciplina.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Docentedisciplina.hbm.xml</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/hiber/util/NewHibernateUtil.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDocente.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/hibernate.cfg.xml</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DAO.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDisciplina.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormTurma.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/Login.java</file>
         </group>
     </open-files>
 </project-private>
