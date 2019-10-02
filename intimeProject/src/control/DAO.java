@@ -240,6 +240,8 @@ public class DAO<T> {
                     }
                 }
                 tx.commit();
+                return true;
+                
             } catch (HibernateException e) {
                 if (tx != null) {
                     tx.rollback();
@@ -249,6 +251,6 @@ public class DAO<T> {
                 session.close();
             }
         }
-
+        return false;
     }
 }
