@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-Sep-2019 16:34:04 by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2019 4:04:31 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Utilizador" table="utilizador" catalog="dbintime" optimistic-lock="version">
         <id name="codigo" type="java.lang.Integer">
@@ -20,17 +20,5 @@
         <property name="email" type="string">
             <column name="email" />
         </property>
-        <set name="docentes" table="docente" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigoUtilizador" />
-            </key>
-            <one-to-many class="model.Docente" />
-        </set>
-        <set name="turmas" table="turma" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigoUtilizador" />
-            </key>
-            <one-to-many class="model.Turma" />
-        </set>
     </class>
 </hibernate-mapping>

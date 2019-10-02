@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-Sep-2019 16:34:04 by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2019 4:04:31 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Disciplina" table="disciplina" catalog="dbintime" optimistic-lock="version">
         <id name="codigo" type="java.lang.Integer">
             <column name="codigo" />
-            <generator class="foreign">
-                <param name="property">docente</param>
-            </generator>
+            <generator class="identity" />
         </id>
-        <one-to-one name="docente" class="model.Docente" constrained="true"></one-to-one>
         <property name="nome" type="string">
             <column name="nome" not-null="true" />
         </property>
@@ -21,16 +18,10 @@
             <column name="cargaHoraria" />
         </property>
         <property name="regente" type="string">
-            <column name="regente" length="100" />
+            <column name="regente" />
         </property>
         <property name="assistente" type="string">
-            <column name="assistente" length="100" />
+            <column name="assistente" />
         </property>
-        <set name="docentedisciplinas" table="docentedisciplina" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigoDisciplina" />
-            </key>
-            <one-to-many class="model.Docentedisciplina" />
-        </set>
     </class>
 </hibernate-mapping>

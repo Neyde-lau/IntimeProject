@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-Sep-2019 16:34:04 by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2019 4:04:31 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Turma" table="turma" catalog="dbintime" optimistic-lock="version">
         <id name="codigo" type="java.lang.Integer">
             <column name="codigo" />
             <generator class="identity" />
         </id>
-        <many-to-one name="utilizador" class="model.Utilizador" fetch="select">
-            <column name="codigoUtilizador" />
-        </many-to-one>
         <property name="curso" type="string">
             <column name="curso" not-null="true" />
         </property>
@@ -20,11 +17,11 @@
         <property name="nivel" type="java.lang.Integer">
             <column name="nivel" />
         </property>
-        <set name="docenteturmas" table="docenteturma" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="codigoTurma" />
-            </key>
-            <one-to-many class="model.Docenteturma" />
-        </set>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" />
+        </property>
     </class>
 </hibernate-mapping>

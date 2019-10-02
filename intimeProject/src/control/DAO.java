@@ -6,7 +6,6 @@
 package control;
 
 import model.Disciplina;
-import model.Docentedisciplina;
 import model.Docente;
 import model.Turma;
 import model.Utilizador;
@@ -210,9 +209,9 @@ public class DAO<T> {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Docente where nome = :nomeDocente";
+            String queryString = "from Docente where nome = :nome";
             Query query = session.createQuery(queryString);
-            query.setString("nomeDocente", nome);
+            query.setString("nome", nome);
             t = (T) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
