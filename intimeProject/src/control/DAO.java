@@ -209,7 +209,7 @@ public class DAO<T> {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Docente where nome = :nome";
+            String queryString = "from Docente where nome = :nomeDocente";
             Query query = session.createQuery(queryString);
             query.setString("nome", nome);
             t = (T) query.uniqueResult();

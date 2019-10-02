@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import model.Docentedisciplina;
 import org.hibernate.Query;
 
 /**
@@ -544,7 +543,7 @@ public class FormDisciplina extends javax.swing.JFrame {
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
         Disciplina d = new Disciplina();
-        Docentedisciplina dd = new Docentedisciplina();
+     
             DAO<Disciplina> dao = new DAO<>();
   
         d.setNome(textNome.getText());
