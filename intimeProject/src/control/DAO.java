@@ -6,7 +6,6 @@
 package control;
 
 import model.Disciplina;
-import model.Docentedisciplina;
 import model.Docente;
 import model.Turma;
 import model.Utilizador;
@@ -212,7 +211,7 @@ public class DAO<T> {
             trns = session.beginTransaction();
             String queryString = "from Docente where nome = :nomeDocente";
             Query query = session.createQuery(queryString);
-            query.setString("nomeDocente", nome);
+            query.setString("nome", nome);
             t = (T) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();

@@ -3,8 +3,8 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="dbintime"/>
   <table-filter match-name="utilizador"/>
-  <table-filter match-name="docente"/>
-  <table-filter match-name="horario"/>
   <table-filter match-name="disciplina"/>
   <table-filter match-name="turma"/>
+  <table-filter match-name="horario"/>
+  <table-filter match-name="docente"/>
 </hibernate-reverse-engineering>
