@@ -6,6 +6,7 @@
 package view;
 
 import control.DAO;
+import control.TurmaDao;
 import model.Turma;
 import model.Utilizador;
 import java.awt.Color;
@@ -39,8 +40,8 @@ public class FormTurma extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        DAO<Turma> dao = new DAO<>();
-        for (Turma u : dao.lerTurma()) {
+        TurmaDao dao = new TurmaDao();
+        for (Turma u : dao.ler()) {
             modelo.addRow(new Object[]{
                 u.getCodigo(),
                 u.getCurso(),
@@ -583,7 +584,7 @@ public void limparCampos(){
         // TODO add your handling code here:
         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do docente");
         Turma t = new Turma();
-        DAO<Turma> dao = new DAO<>();
+        TurmaDao dao = new TurmaDao();
         dao.Pesquisa(resposta);
 
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -601,13 +602,13 @@ public void limparCampos(){
         // TODO add your handling code here:
          Turma t = new Turma();
 
-        DAO<Turma> dao = new DAO<>();
+        TurmaDao dao = new TurmaDao();
         t.setCurso((String) cbCurso.getSelectedItem());
         t.setTutor((String) cbRegime.getSelectedItem());
         t.setNivel((Integer) cbNivel.getSelectedItem());
        // t.setEmail(textEmail.getText());
         t.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        dao.apagarTurma(t.getCodigo());
+        dao.apagar(t.getCodigo());
         limparCampos();
         JOptionPane.showMessageDialog(this, "Removido com sucesso");
         try {

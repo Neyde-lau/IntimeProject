@@ -6,7 +6,7 @@
 package view;
 
 import control.DAO;
-import model.Docente;
+import control.UtilizadorDao;
 import model.Utilizador;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -40,8 +40,8 @@ public class FormUser extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        DAO<Utilizador> dao = new DAO<>();
-        for (Utilizador u : dao.lerUtilizador()) {
+        UtilizadorDao dao = new UtilizadorDao();
+        for (Utilizador u : dao.ler()) {
             modelo.addRow(new Object[]{
                 u.getCodigo(),
                 u.getNome(),
@@ -574,8 +574,8 @@ public void limparCampos(){
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do docente");
-        Docente d = new Docente();
-        DAO<Docente> dao = new DAO<>();
+        Utilizador u = new Utilizador();
+        UtilizadorDao dao = new UtilizadorDao();
         dao.Pesquisa(resposta);
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -592,12 +592,12 @@ public void limparCampos(){
         // TODO add your handling code here:
         Utilizador u = new Utilizador();
         // DocenteDao dao = new DocenteDao();
-        DAO<Docente> dao = new DAO<>();
+        UtilizadorDao dao = new UtilizadorDao();
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
         u.setSenha(textSenha.getText());
         u.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        dao.apagarUtilizador(u.getCodigo());
+        dao.apagar(u.getCodigo());
         limparCampos();
         JOptionPane.showMessageDialog(this, "Removido com sucesso");
         try {

@@ -6,6 +6,7 @@
 package view;
 
 import control.DAO;
+import control.DocenteDao;
 
 import model.Disciplina;
 import model.Docente;
@@ -41,8 +42,8 @@ public class FormDocente extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        DAO<Docente> dao = new DAO<>();
-        for (Docente d : dao.lerDocente()) {
+        DocenteDao dao = new DocenteDao();
+        for (Docente d : dao.ler()) {
             modelo.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),
@@ -533,11 +534,11 @@ public class FormDocente extends javax.swing.JFrame {
         // TODO add your handling code here:
         Docente d = new Docente();
         // DocenteDao dao = new DocenteDao();
-        DAO<Docente> dao = new DAO<>();
+        DocenteDao dao = new DocenteDao();
         d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
         d.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        dao.apagarDocente(d.getCodigo());
+        dao.apagar(d.getCodigo());
         limparCampos();
         JOptionPane.showMessageDialog(this, "Removido com sucesso");
         try {
@@ -565,7 +566,7 @@ public class FormDocente extends javax.swing.JFrame {
         // TODO add your handling code here:
         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do docente");
             Docente d = new Docente();
-            DAO<Docente> dao = new DAO<>();
+            DocenteDao dao = new DocenteDao();
             dao.Pesquisa(resposta);
             
     }//GEN-LAST:event_btPesquisarActionPerformed

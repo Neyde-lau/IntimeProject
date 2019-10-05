@@ -6,6 +6,7 @@
 package view;
 
 import control.DAO;
+import control.DisciplinaDao;
 
 import model.Disciplina;
 import java.awt.Color;
@@ -50,8 +51,8 @@ public class FormDisciplina extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);
-        DAO<Disciplina> dao = new DAO<>();
-        for (Disciplina d : dao.lerDisciplina()) {
+        DisciplinaDao dao = new DisciplinaDao();
+        for (Disciplina d : dao.ler()) {
             modelo.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),
@@ -285,7 +286,6 @@ public class FormDisciplina extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Nome");
 
-        textNome.setForeground(new java.awt.Color(0, 0, 0));
         textNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNomeActionPerformed(evt);
@@ -307,7 +307,6 @@ public class FormDisciplina extends javax.swing.JFrame {
             }
         });
 
-        tabela.setBackground(new java.awt.Color(255, 255, 255));
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabela.setForeground(new java.awt.Color(255, 255, 255));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -384,6 +383,11 @@ public class FormDisciplina extends javax.swing.JFrame {
         btRemover.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btRemover.setForeground(new java.awt.Color(255, 255, 255));
         btRemover.setLabel("Remover");
+        btRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverActionPerformed(evt);
+            }
+        });
 
         textAssistente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -602,6 +606,10 @@ public class FormDisciplina extends javax.swing.JFrame {
     private void textCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCargaActionPerformed
+
+    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btRemoverActionPerformed
 
     /**
      * @param args the command line arguments
