@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Docente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/UtilizadorDao.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/MenuTurma.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormHorario.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDocente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DocenteDao.java</file>
@@ -19,7 +20,9 @@
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/util/NewHibernateUtil.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DisciplinaDao.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Disciplina.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormVerTurma.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/TurmaDao.java</file>
+            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/MenuDocente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/hibernate.cfg.xml</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DAO.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormTurma.java</file>
