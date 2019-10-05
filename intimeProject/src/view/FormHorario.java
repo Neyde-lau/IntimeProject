@@ -515,7 +515,21 @@ public class FormHorario extends javax.swing.JFrame {
 
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
+        Disciplina d = new Disciplina();
 
+        DAO<Disciplina> dao = new DAO<>();
+
+        d.setNome(textNome.getText());
+        d.setAssistente(textAssistente.getText());
+        d.setRegente(textRegente.getText());
+        dao.gravar(d);
+        limparCampos();
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btRegistarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
