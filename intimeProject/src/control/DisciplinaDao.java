@@ -6,10 +6,17 @@
 
 package control;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Disciplina;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import util.NewHibernateUtil;
+
 /**
- *
+ * 
  * @author user
  */
 public class DisciplinaDao {
-
-}
+        
+        }
