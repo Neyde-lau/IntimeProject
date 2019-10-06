@@ -583,10 +583,11 @@ public void limparCampos(){
         dao.actualizar(u);
         try {
             readJTable();
+            JOptionPane.showMessageDialog(null, "Actualizado com sucesso");
         } catch (SQLException ex) {
             Logger.getLogger(FormDocente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Actualizado com sucesso");
+        
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
@@ -621,7 +622,7 @@ public void limparCampos(){
         try {
             readJTable();
         } catch (SQLException ex) {
-            Logger.getLogger(FormDocente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btRemoverActionPerformed
 

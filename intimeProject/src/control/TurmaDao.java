@@ -54,7 +54,7 @@ public class TurmaDao {
         return t;
     }
 
-    public Turma Pesquisa(String nome) {
+   /** public Turma Pesquisa(String nome) {
         Turma t = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -64,6 +64,7 @@ public class TurmaDao {
             Query query = session.createQuery(queryString);
             query.setString("nome", nome);
             t = (Turma) query.uniqueResult();
+            
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -71,5 +72,6 @@ public class TurmaDao {
             session.close();
         }
         return t;
-    }  
+    }
+    */
 }

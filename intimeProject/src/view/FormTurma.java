@@ -7,18 +7,17 @@ package view;
 
 import control.DAO;
 import control.TurmaDao;
-import control.UtilizadorDao;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Turma;
-import model.Utilizador;
 
 /**
  *
@@ -83,7 +82,6 @@ public class FormTurma extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btRegistar = new java.awt.Button();
         btActualizar = new java.awt.Button();
-        btPesquisar = new java.awt.Button();
         btListar = new java.awt.Button();
         btRemover = new java.awt.Button();
         jLabel10 = new javax.swing.JLabel();
@@ -346,11 +344,6 @@ public class FormTurma extends javax.swing.JFrame {
             }
         });
 
-        btPesquisar.setBackground(new java.awt.Color(84, 127, 206));
-        btPesquisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisar.setLabel("Pesquisar");
-
         btListar.setBackground(new java.awt.Color(84, 127, 206));
         btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btListar.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,8 +440,7 @@ public class FormTurma extends javax.swing.JFrame {
                                                 .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(125, 125, 125))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(textCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,7 +496,6 @@ public class FormTurma extends javax.swing.JFrame {
                     .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
@@ -616,20 +607,67 @@ public class FormTurma extends javax.swing.JFrame {
         t.setTutor(textTutor.getText());
         t.setRegime(cbRegime.getSelectedItem().toString());
         
-        
-        
+        dao.gravar(t);
+        limparCampos();
+         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+         
     }//GEN-LAST:event_btRegistarActionPerformed
-
+        public void limparCampos(){
+            textCurso.setText("");
+            textEmail.setText("");
+            textTutor.setText("");
+       }
+    
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
+        Turma t = new Turma();
+        DAO<Turma> dao = new DAO<>();
+        
+        t.setCurso(textCurso.getText());
+        t.setTutor(textTutor.getText());
+        t.setNivel((Integer) cbNivel.getSelectedItem());
+        t.setRegime((String) cbRegime.getSelectedItem());
+        dao.actualizar(t);
+        
+        try {
+            readJTable();
+            JOptionPane.showMessageDialog(null, "Actualizado com sucesso");
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTurma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTurma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btListarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
+          Turma t = new Turma();
+        TurmaDao dao = new TurmaDao();
+        
+        t.setCurso(textCurso.getText());
+        t.setTutor(textTutor.getText());
+        t.setNivel((Integer) cbNivel.getSelectedItem());
+        t.setRegime((String) cbRegime.getSelectedItem());
+        t.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        dao.apagar(t.getCodigo());
+        
+        limparCampos();
+        JOptionPane.showMessageDialog(this, "Removido com sucesso");
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTurma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void cbNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNivelActionPerformed
@@ -720,7 +758,6 @@ public class FormTurma extends javax.swing.JFrame {
     private java.awt.Button btHorario;
     private java.awt.Button btListar;
     private javax.swing.JPanel btNotif;
-    private java.awt.Button btPesquisar;
     private java.awt.Button btRegistar;
     private java.awt.Button btRemover;
     private javax.swing.JPanel btSessao;
