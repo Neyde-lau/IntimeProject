@@ -17,7 +17,7 @@ import util.NewHibernateUtil;
  *
  * @author user
  */
-public class TurmaDao {
+public class TurmaDao extends DAO{
       public void apagar(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();

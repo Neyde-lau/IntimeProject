@@ -45,6 +45,7 @@ public class FormTurma extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 t.getCodigo(),
                 t.getCurso(),
+                t.getTutor(),
                 t.getNivel(),
                 t.getEmail(),
                 });
@@ -602,10 +603,10 @@ public class FormTurma extends javax.swing.JFrame {
         Turma t = new Turma();
         DAO<Turma> dao = new DAO<>();
         t.setCurso(textCurso.getText());
-        t.setNivel((Integer) cbNivel.getSelectedItem());
-        t.setEmail(textEmail.getText());
         t.setTutor(textTutor.getText());
-        t.setRegime(cbRegime.getSelectedItem().toString());
+        t.setNivel((String) cbNivel.getSelectedItem());
+        t.setRegime((String) cbRegime.getSelectedItem());
+        t.setEmail(textEmail.getText());
         
         dao.gravar(t);
         limparCampos();
@@ -625,7 +626,7 @@ public class FormTurma extends javax.swing.JFrame {
         
         t.setCurso(textCurso.getText());
         t.setTutor(textTutor.getText());
-        t.setNivel((Integer) cbNivel.getSelectedItem());
+        t.setNivel((String) cbNivel.getSelectedItem());
         t.setRegime((String) cbRegime.getSelectedItem());
         dao.actualizar(t);
         
@@ -655,7 +656,7 @@ public class FormTurma extends javax.swing.JFrame {
         
         t.setCurso(textCurso.getText());
         t.setTutor(textTutor.getText());
-        t.setNivel((Integer) cbNivel.getSelectedItem());
+        t.setNivel((String) cbNivel.getSelectedItem());
         t.setRegime((String) cbRegime.getSelectedItem());
         t.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagar(t.getCodigo());

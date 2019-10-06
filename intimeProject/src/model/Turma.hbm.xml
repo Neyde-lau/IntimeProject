@@ -17,7 +17,7 @@
         <property name="regime" type="string">
             <column name="regime" />
         </property>
-        <property name="nivel" type="java.lang.Integer">
+        <property name="nivel" type="java.lang.string">
             <column name="nivel" />
         </property>
         <property name="email" type="string">

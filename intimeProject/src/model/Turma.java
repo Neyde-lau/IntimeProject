@@ -13,7 +13,7 @@ public class Turma  implements java.io.Serializable {
      private String curso;
      private String tutor;
      private String regime;
-     private Integer nivel;
+     private String nivel;
      private String email;
 
     public Turma() {
@@ -23,7 +23,7 @@ public class Turma  implements java.io.Serializable {
     public Turma(String curso) {
         this.curso = curso;
     }
-    public Turma(String curso, String tutor, String regime, Integer nivel, String email) {
+    public Turma(String curso, String tutor, String regime, String nivel, String email) {
        this.curso = curso;
        this.tutor = tutor;
        this.regime = regime;
@@ -59,11 +59,11 @@ public class Turma  implements java.io.Serializable {
     public void setRegime(String regime) {
         this.regime = regime;
     }
-    public Integer getNivel() {
+    public String getNivel() {
         return this.nivel;
     }
     
-    public void setNivel(Integer nivel) {
+    public void setNivel(String nivel) {
         this.nivel = nivel;
     }
     public String getEmail() {
