@@ -10,7 +10,7 @@ public class Horario  implements java.io.Serializable {
 
 
      private Integer id;
-     private int codigoTurma;
+     private String codigoTurma;
      private String segunda;
      private String terca;
      private String quarta;
@@ -21,10 +21,10 @@ public class Horario  implements java.io.Serializable {
     }
 
 	
-    public Horario(int codigoTurma) {
-        this.codigoTurma = codigoTurma;
+    public Horario(String codigoTurma) {
+       
     }
-    public Horario(int codigoTurma, String segunda, String terca, String quarta, String quinta, String sexta) {
+    public Horario(String codigoTurma, String segunda, String terca, String quarta, String quinta, String sexta) {
        this.codigoTurma = codigoTurma;
        this.segunda = segunda;
        this.terca = terca;
@@ -40,11 +40,11 @@ public class Horario  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public int getCodigoTurma() {
+    public String getCodigoTurma() {
         return this.codigoTurma;
     }
     
-    public void setCodigoTurma(int codigoTurma) {
+    public void setCodigoTurma(String codigoTurma) {
         this.codigoTurma = codigoTurma;
     }
     public String getSegunda() {

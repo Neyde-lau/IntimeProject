@@ -5,8 +5,17 @@
  */
 package view;
 
+import control.DAO;
+import control.HorarioDao;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.Horario;
 
 /**
  *
@@ -17,8 +26,46 @@ public class FormHorario extends javax.swing.JFrame {
     /**
      * Creates new form FormHorario1
      */
-    public FormHorario() {
+    private String codigoTurma;
+    
+    public FormHorario(String ct){
+        this.codigoTurma = ct;
+    }
+    public String getCodigoTurma(){
+        return this.codigoTurma;
+    }
+    
+    public void setCodigoTurma(String ct){
+        this.codigoTurma = ct;
+    }
+    /*public void setTextAtCodigoTurma(String ct){
+      textCodigoTurma.setText(ct);
+    }*/
+    
+    public FormHorario() throws SQLException {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        tabela.setRowSorter(new TableRowSorter(modelo));
+        readJTable();
+    }
+        public void readJTable() throws SQLException {
+
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+            HorarioDao dao = new HorarioDao();
+        for (Horario h : dao.ler()) {
+            modelo.addRow(new Object[]{
+                h.getId(),
+                h.getSegunda(),
+                h.getTerca(),
+                h.getQuarta(),
+                h.getQuinta(),
+                h.getSexta(),
+              
+                });
+        }
     }
 
     /**
@@ -57,23 +104,25 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        jComboBox5 = new javax.swing.JComboBox();
-        jComboBox6 = new javax.swing.JComboBox();
-        jComboBox7 = new javax.swing.JComboBox();
-        jComboBox8 = new javax.swing.JComboBox();
-        jComboBox9 = new javax.swing.JComboBox();
-        jComboBox10 = new javax.swing.JComboBox();
-        jComboBox11 = new javax.swing.JComboBox();
-        jComboBox12 = new javax.swing.JComboBox();
-        jComboBox13 = new javax.swing.JComboBox();
-        jComboBox14 = new javax.swing.JComboBox();
-        jComboBox15 = new javax.swing.JComboBox();
+        cbSegunda1 = new javax.swing.JComboBox();
+        cbSegunda2 = new javax.swing.JComboBox();
+        cbSegunda3 = new javax.swing.JComboBox();
+        cbTerca1 = new javax.swing.JComboBox();
+        cbTerca2 = new javax.swing.JComboBox();
+        cbTerca3 = new javax.swing.JComboBox();
+        cbQuarta1 = new javax.swing.JComboBox();
+        cbQuarta2 = new javax.swing.JComboBox();
+        cbQuarta3 = new javax.swing.JComboBox();
+        cbQuinta1 = new javax.swing.JComboBox();
+        cbQuinta2 = new javax.swing.JComboBox();
+        cbQuinta3 = new javax.swing.JComboBox();
+        cbSexta1 = new javax.swing.JComboBox();
+        cbSexta2 = new javax.swing.JComboBox();
+        cbSexta3 = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        textCodigoTurma = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -342,35 +391,35 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setText("Aula 2");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSegunda1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSegunda2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSegunda3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTerca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTerca2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTerca3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuarta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuarta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuarta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuinta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuinta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbQuinta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSexta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSexta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -383,7 +432,7 @@ public class FormHorario extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbSegunda1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -396,33 +445,33 @@ public class FormHorario extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbTerca2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(48, 48, 48)
-                                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(cbQuarta2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbTerca1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(48, 48, 48)
-                                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(cbQuarta1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbTerca3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(48, 48, 48)
-                                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(cbQuarta3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(cbSegunda2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbSegunda3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel11)
-                                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbQuinta1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbQuinta2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbQuinta3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(64, 64, 64)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel12)
-                                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cbSexta1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbSexta2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbSexta3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
                                 .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -449,27 +498,27 @@ public class FormHorario extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbSegunda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTerca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuarta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuinta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSexta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbSegunda2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTerca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuarta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuinta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSexta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbSegunda3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTerca3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuarta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbQuinta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSexta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,25 +552,37 @@ public class FormHorario extends javax.swing.JFrame {
 
         bg.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 1590, 60));
 
+        textCodigoTurma.setEditable(false);
+        textCodigoTurma.setText(this.getCodigoTurma());
+        textCodigoTurma.setToolTipText("");
+        textCodigoTurma.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                textCodigoTurmaComponentShown(evt);
+            }
+        });
+        textCodigoTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodigoTurmaActionPerformed(evt);
+            }
+        });
+        bg.add(textCodigoTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 120, 40));
+
+        jLabel1.setText("Codigo da Turma");
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 160, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1940, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -568,12 +629,52 @@ public class FormHorario extends javax.swing.JFrame {
 
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
+        Horario h = new Horario();
+        DAO<Horario> dao = new DAO<>();
+        
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda1.getSelectedItem());
+        h.setTerca((String) cbTerca1.getSelectedItem());
+        h.setQuarta((String) cbQuarta1.getSelectedItem());
+        h.setQuinta((String) cbQuinta1.getSelectedItem());
+        h.setSexta((String) cbSexta1.getSelectedItem());
+        dao.gravar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda2.getSelectedItem());
+        h.setTerca((String) cbTerca2.getSelectedItem());
+        h.setQuarta((String) cbQuarta2.getSelectedItem());
+        h.setQuinta((String) cbQuinta2.getSelectedItem());
+        h.setSexta((String) cbSexta2.getSelectedItem());
+        dao.gravar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda3.getSelectedItem());
+        h.setTerca((String) cbTerca3.getSelectedItem());
+        h.setQuarta((String) cbQuarta3.getSelectedItem());
+        h.setQuinta((String) cbQuinta3.getSelectedItem());
+        h.setSexta((String) cbSexta3.getSelectedItem());
+        dao.gravar(h);
+        
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso");
+        
+        
 
     }//GEN-LAST:event_btRegistarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
+        Horario h = new Horario();
+        DAO<Horario> dao = new DAO<>();        
+        
+       
     }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void textCodigoTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoTurmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodigoTurmaActionPerformed
+
+    private void textCodigoTurmaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_textCodigoTurmaComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodigoTurmaComponentShown
 
     /**
      * @param args the command line arguments
@@ -606,7 +707,11 @@ public class FormHorario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormHorario().setVisible(true);
+                try {
+                    new FormHorario().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -615,6 +720,7 @@ public class FormHorario extends javax.swing.JFrame {
         painel.setBackground(new Color(120, 168, 252));
     }
 
+    
     private void resetColor(JPanel[] pane, JPanel[] indicators) {
         for (int i = 0; i < pane.length; i++) {
             pane[i].setBackground(new Color(84, 127, 206));
@@ -623,6 +729,8 @@ public class FormHorario extends javax.swing.JFrame {
         for (int i = 0; i < indicators.length; i++) {
             indicators[i].setOpaque(false);
         }
+        
+       //this.setTextAtCodigoTurma(this.codigoTurma);
 
     }
 
@@ -633,26 +741,27 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JPanel btNotif;
     private java.awt.Button btRegistar;
     private javax.swing.JPanel btSessao;
+    private javax.swing.JComboBox cbQuarta1;
+    private javax.swing.JComboBox cbQuarta2;
+    private javax.swing.JComboBox cbQuarta3;
+    private javax.swing.JComboBox cbQuinta1;
+    private javax.swing.JComboBox cbQuinta2;
+    private javax.swing.JComboBox cbQuinta3;
+    private javax.swing.JComboBox cbSegunda1;
+    private javax.swing.JComboBox cbSegunda2;
+    private javax.swing.JComboBox cbSegunda3;
+    private javax.swing.JComboBox cbSexta1;
+    private javax.swing.JComboBox cbSexta2;
+    private javax.swing.JComboBox cbSexta3;
+    private javax.swing.JComboBox cbTerca1;
+    private javax.swing.JComboBox cbTerca2;
+    private javax.swing.JComboBox cbTerca3;
     private javax.swing.JLabel encerrar;
     private javax.swing.JLabel fecharSessao;
     private javax.swing.JPanel indEncerrar;
     private javax.swing.JPanel indNotif;
     private javax.swing.JPanel indSessao;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox10;
-    private javax.swing.JComboBox jComboBox11;
-    private javax.swing.JComboBox jComboBox12;
-    private javax.swing.JComboBox jComboBox13;
-    private javax.swing.JComboBox jComboBox14;
-    private javax.swing.JComboBox jComboBox15;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JComboBox jComboBox6;
-    private javax.swing.JComboBox jComboBox7;
-    private javax.swing.JComboBox jComboBox8;
-    private javax.swing.JComboBox jComboBox9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -671,5 +780,6 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel notificacoes;
     private javax.swing.JTable tabela;
+    private javax.swing.JTextField textCodigoTurma;
     // End of variables declaration//GEN-END:variables
 }
