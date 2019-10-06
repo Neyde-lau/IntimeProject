@@ -46,6 +46,7 @@ public class FormTurma extends javax.swing.JFrame {
                 t.getCodigo(),
                 t.getCurso(),
                 t.getTutor(),
+                t.getRegime(),
                 t.getNivel(),
                 t.getEmail(),
                 });

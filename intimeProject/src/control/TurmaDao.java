@@ -8,7 +8,6 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 import model.Turma;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.NewHibernateUtil;
