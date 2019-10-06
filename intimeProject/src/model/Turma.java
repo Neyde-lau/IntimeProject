@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 2, 2019 4:04:30 PM by Hibernate Tools 4.3.1
+// Generated 06-Oct-2019 16:27:09 by Hibernate Tools 4.3.1
 
 
 
@@ -12,9 +12,9 @@ public class Turma  implements java.io.Serializable {
      private Integer codigo;
      private String curso;
      private String tutor;
+     private String regime;
      private Integer nivel;
      private String email;
-     private String senha;
 
     public Turma() {
     }
@@ -23,12 +23,12 @@ public class Turma  implements java.io.Serializable {
     public Turma(String curso) {
         this.curso = curso;
     }
-    public Turma(String curso, String tutor, Integer nivel, String email, String senha) {
+    public Turma(String curso, String tutor, String regime, Integer nivel, String email) {
        this.curso = curso;
        this.tutor = tutor;
+       this.regime = regime;
        this.nivel = nivel;
        this.email = email;
-       this.senha = senha;
     }
    
     public Integer getCodigo() {
@@ -52,6 +52,13 @@ public class Turma  implements java.io.Serializable {
     public void setTutor(String tutor) {
         this.tutor = tutor;
     }
+    public String getRegime() {
+        return this.regime;
+    }
+    
+    public void setRegime(String regime) {
+        this.regime = regime;
+    }
     public Integer getNivel() {
         return this.nivel;
     }
@@ -65,13 +72,6 @@ public class Turma  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
-    }
-    public String getSenha() {
-        return this.senha;
-    }
-    
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
 

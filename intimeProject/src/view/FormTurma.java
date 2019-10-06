@@ -614,7 +614,7 @@ public class FormTurma extends javax.swing.JFrame {
         t.setNivel((Integer) cbNivel.getSelectedItem());
         t.setEmail(textEmail.getText());
         t.setTutor(textTutor.getText());
-        //t.setregime(cbRegime.getSelectedItem().toString());
+        t.setRegime(cbRegime.getSelectedItem().toString());
         
         
         

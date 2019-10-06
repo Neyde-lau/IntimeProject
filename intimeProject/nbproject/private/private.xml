@@ -6,13 +6,10 @@
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Docente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/META-INF/persistence.xml</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/UtilizadorDao.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/MenuTurma.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormHorario.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDocente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DocenteDao.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormVerDisciplina.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/MenuAdmin.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormAusencia.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormDisciplina.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/Login.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormUser.java</file>
@@ -20,9 +17,7 @@
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Disciplina.hbm.xml</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DisciplinaDao.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/model/Disciplina.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormVerTurma.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/TurmaDao.java</file>
-            <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/MenuDocente.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/control/DAO.java</file>
             <file>file:/C:/Users/user/Desktop/IntimeX/IntimeProject/intimeProject/src/view/FormTurma.java</file>
         </group>

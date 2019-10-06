@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 2, 2019 4:04:31 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-Oct-2019 16:27:10 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Turma" table="turma" catalog="dbintime" optimistic-lock="version">
         <id name="codigo" type="java.lang.Integer">
@@ -14,14 +14,14 @@
         <property name="tutor" type="string">
             <column name="tutor" />
         </property>
+        <property name="regime" type="string">
+            <column name="regime" />
+        </property>
         <property name="nivel" type="java.lang.Integer">
             <column name="nivel" />
         </property>
         <property name="email" type="string">
             <column name="email" />
-        </property>
-        <property name="senha" type="string">
-            <column name="senha" />
         </property>
     </class>
 </hibernate-mapping>
