@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="codigoTurma" type="string">
+        <property name="codigoTurma" type="java.lang.Integer">
             <column name="codigoTurma" not-null="true" />
         </property>
         <property name="segunda" type="string">

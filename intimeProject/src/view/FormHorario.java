@@ -9,6 +9,7 @@ import control.DAO;
 import control.HorarioDao;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,16 +27,13 @@ public class FormHorario extends javax.swing.JFrame {
     /**
      * Creates new form FormHorario1
      */
-    private String codigoTurma;
+    private int codigoTurma;
     
-    public FormHorario(String ct){
-        this.codigoTurma = ct;
-    }
-    public String getCodigoTurma(){
+    public int getCodigoTurma(){
         return this.codigoTurma;
     }
     
-    public void setCodigoTurma(String ct){
+    public void setCodigoTurma(int ct){
         this.codigoTurma = ct;
     }
     /*public void setTextAtCodigoTurma(String ct){
@@ -50,14 +48,38 @@ public class FormHorario extends javax.swing.JFrame {
         tabela.setRowSorter(new TableRowSorter(modelo));
         readJTable();
     }
+    
+        public ArrayList<Horario> seleccionarHorario(int c) {
+            
+        HorarioDao dao = new HorarioDao();
+        ArrayList<Horario> horarioBase = new ArrayList<>();
+        horarioBase = (ArrayList<Horario>) dao.ler();
+        
+        ArrayList<Horario> horarioFinal = new ArrayList<>();
+        Horario h = new Horario();
+       
+        for (Horario h1 : horarioBase) {
+            if (h1.getCodigoTurma() == c) {
+                h.setSegunda(h1.getSegunda());
+                h.setTerca(h1.getTerca());
+                h.setQuarta(h1.getQuarta());
+                h.setQuinta(h1.getQuinta());
+                h.setSexta(h1.getSexta());
+                horarioFinal.add(h);
+            }
+        }
+        return horarioFinal;
+    }
         public void readJTable() throws SQLException {
-
+         ArrayList<Horario> horarioFinal= new ArrayList <>();
+        horarioFinal = seleccionarHorario(codigoTurma);
+          
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);
-            HorarioDao dao = new HorarioDao();
-        for (Horario h : dao.ler()) {
+            
+        for (Horario h : horarioFinal) {
             modelo.addRow(new Object[]{
-                h.getId(),
+                "",
                 h.getSegunda(),
                 h.getTerca(),
                 h.getQuarta(),
@@ -119,10 +141,9 @@ public class FormHorario extends javax.swing.JFrame {
         cbSexta1 = new javax.swing.JComboBox();
         cbSexta2 = new javax.swing.JComboBox();
         cbSexta3 = new javax.swing.JComboBox();
+        btListar = new java.awt.Button();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        textCodigoTurma = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -303,7 +324,6 @@ public class FormHorario extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tabela.setForeground(new java.awt.Color(255, 255, 255));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"AULA 1", null, null, null, null, null},
@@ -421,6 +441,17 @@ public class FormHorario extends javax.swing.JFrame {
 
         cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btListar.setActionCommand("Voltar");
+        btListar.setBackground(new java.awt.Color(84, 127, 206));
+        btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btListar.setForeground(new java.awt.Color(255, 255, 255));
+        btListar.setLabel("Voltar");
+        btListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -474,7 +505,9 @@ public class FormHorario extends javax.swing.JFrame {
                                     .addComponent(cbSexta3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(96, 96, 96)
+                                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,10 +552,11 @@ public class FormHorario extends javax.swing.JFrame {
                     .addComponent(cbQuarta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbQuinta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbSexta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124))
@@ -551,24 +585,6 @@ public class FormHorario extends javax.swing.JFrame {
         );
 
         bg.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 1590, 60));
-
-        textCodigoTurma.setEditable(false);
-        textCodigoTurma.setText(this.getCodigoTurma());
-        textCodigoTurma.setToolTipText("");
-        textCodigoTurma.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                textCodigoTurmaComponentShown(evt);
-            }
-        });
-        textCodigoTurma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCodigoTurmaActionPerformed(evt);
-            }
-        });
-        bg.add(textCodigoTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 120, 40));
-
-        jLabel1.setText("Codigo da Turma");
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -668,13 +684,17 @@ public class FormHorario extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btActualizarActionPerformed
 
-    private void textCodigoTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoTurmaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCodigoTurmaActionPerformed
+    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
 
-    private void textCodigoTurmaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_textCodigoTurmaComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCodigoTurmaComponentShown
+        try {
+            FormTurma ft = new FormTurma();
+            ft.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btListarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -738,6 +758,7 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private java.awt.Button btActualizar;
     private javax.swing.JPanel btEncerrar;
+    private java.awt.Button btListar;
     private javax.swing.JPanel btNotif;
     private java.awt.Button btRegistar;
     private javax.swing.JPanel btSessao;
@@ -761,7 +782,6 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JPanel indEncerrar;
     private javax.swing.JPanel indNotif;
     private javax.swing.JPanel indSessao;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -780,6 +800,5 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel notificacoes;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextField textCodigoTurma;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,7 +24,7 @@ public class HorarioDao extends DAO {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
-            t = session.createQuery("from HOrario where codigoTurma= :codigoTurma").list();
+            t = session.createQuery("from Horario").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
