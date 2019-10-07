@@ -56,11 +56,13 @@ public class FormDisciplina extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),
-               
+                d.getCredito(),
+                d.getCargaHoraria(),
                 d.getAssistente(),
                 d.getRegente(),
             });
-        }
+        
+    }
     }
 
     @SuppressWarnings("unchecked")
@@ -550,6 +552,8 @@ public class FormDisciplina extends javax.swing.JFrame {
             DAO<Disciplina> dao = new DAO<>();
   
         d.setNome(textNome.getText());
+        d.setCredito(Integer.parseInt(textCredito.getText()));
+        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
         d.setAssistente(textAssistente.getText());
         d.setRegente(textRegente.getText());
         dao.gravar(d);
@@ -590,12 +594,32 @@ public class FormDisciplina extends javax.swing.JFrame {
                 int i = tabela.getSelectedRow();
         TableModel model = tabela.getModel();
         textNome.setText(model.getValueAt(i, 1).toString());
-        textRegente.setText(model.getValueAt(i, 2).toString());
-        textAssistente.setText(model.getValueAt(i, 3).toString());
+        textCredito.setText(model.getValueAt(i,2).toString());
+        textCarga.setText(model.getValueAt(i,3).toString());
+        textRegente.setText(model.getValueAt(i, 4).toString());
+        textAssistente.setText(model.getValueAt(i, 5).toString());
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
+               Disciplina d = new Disciplina();
+     
+            DAO<Disciplina> dao = new DAO<>();
+  
+        d.setNome(textNome.getText());
+        d.setCredito(Integer.parseInt(textCredito.getText()));
+        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
+        d.setAssistente(textAssistente.getText());
+        d.setRegente(textRegente.getText());
+           d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+        dao.actualizar(d);
+        limparCampos();
+        JOptionPane.showMessageDialog(this, "Actualizado com sucesso");
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void textAssistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAssistenteActionPerformed
@@ -608,6 +632,24 @@ public class FormDisciplina extends javax.swing.JFrame {
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
+               Disciplina d = new Disciplina();
+     
+            DisciplinaDao dao = new DisciplinaDao();
+  
+        d.setNome(textNome.getText());
+        d.setCredito(Integer.parseInt(textCredito.getText()));
+        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
+        d.setAssistente(textAssistente.getText());
+        d.setRegente(textRegente.getText());
+                d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+        dao.apagar(d.getCodigo());
+        limparCampos();
+        JOptionPane.showMessageDialog(this, "Removido com sucesso");
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btRemoverActionPerformed
 
     /**

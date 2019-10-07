@@ -1,8 +1,9 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.5.5-10.4.6-MariaDB : Database - dbintime
+MySQL - 5.7.14 : Database - dbintime
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
