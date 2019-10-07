@@ -8,7 +8,6 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 import model.Turma;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.NewHibernateUtil;
@@ -17,7 +16,7 @@ import util.NewHibernateUtil;
  *
  * @author user
  */
-public class TurmaDao {
+public class TurmaDao extends DAO{
       public void apagar(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -54,7 +53,7 @@ public class TurmaDao {
         return t;
     }
 
-    public Turma Pesquisa(String nome) {
+   /** public Turma Pesquisa(String nome) {
         Turma t = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -64,6 +63,7 @@ public class TurmaDao {
             Query query = session.createQuery(queryString);
             query.setString("nome", nome);
             t = (Turma) query.uniqueResult();
+            
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -71,5 +71,6 @@ public class TurmaDao {
             session.close();
         }
         return t;
-    }  
+    }
+    */
 }

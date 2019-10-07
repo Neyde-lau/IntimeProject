@@ -21,14 +21,14 @@ USE `dbintime`;
 DROP TABLE IF EXISTS `disciplina`;
 
 CREATE TABLE `disciplina` (
-  `codigo` INT(255) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(255) NOT NULL,
-  `credito` INT(255) DEFAULT NULL,
-  `cargaHoraria` INT(255) DEFAULT NULL,
-  `regente` VARCHAR(255) DEFAULT NULL,
-  `assistente` VARCHAR(255) DEFAULT NULL,
+  `codigo` int(255) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `credito` int(255) DEFAULT NULL,
+  `cargaHoraria` int(255) DEFAULT NULL,
+  `regente` varchar(255) DEFAULT NULL,
+  `assistente` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `disciplina` */
 
@@ -37,13 +37,13 @@ CREATE TABLE `disciplina` (
 DROP TABLE IF EXISTS `docente`;
 
 CREATE TABLE `docente` (
-  `codigo` INT(20) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(255) NOT NULL,
-  `categoria` VARCHAR(255) DEFAULT NULL,
-  `email` VARCHAR(255) DEFAULT NULL,
-  `senha` VARCHAR(255) DEFAULT NULL,
+  `codigo` int(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `categoria` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `docente` */
 
@@ -52,15 +52,15 @@ CREATE TABLE `docente` (
 DROP TABLE IF EXISTS `horario`;
 
 CREATE TABLE `horario` (
-  `id` INT(255) NOT NULL AUTO_INCREMENT,
-  `codigoTurma` INT(255) NOT NULL,
-  `segunda` VARCHAR(255) DEFAULT NULL,
-  `terca` VARCHAR(255) DEFAULT NULL,
-  `quarta` VARCHAR(255) DEFAULT NULL,
-  `quinta` VARCHAR(255) DEFAULT NULL,
-  `sexta` VARCHAR(255) DEFAULT NULL,
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `codigoTurma` int(255) NOT NULL,
+  `segunda` varchar(255) DEFAULT NULL,
+  `terca` varchar(255) DEFAULT NULL,
+  `quarta` varchar(255) DEFAULT NULL,
+  `quinta` varchar(255) DEFAULT NULL,
+  `sexta` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `horario` */
 
@@ -69,14 +69,14 @@ CREATE TABLE `horario` (
 DROP TABLE IF EXISTS `turma`;
 
 CREATE TABLE `turma` (
-  `codigo` INT(255) NOT NULL AUTO_INCREMENT,
-  `curso` VARCHAR(255) NOT NULL,
-  `tutor` VARCHAR(255) DEFAULT NULL,
-  `nivel` INT(255) DEFAULT NULL,
-  `email` VARCHAR(255) DEFAULT NULL,
-  `senha` VARCHAR(255) DEFAULT NULL,
+  `codigo` int(255) NOT NULL AUTO_INCREMENT,
+  `curso` varchar(255) NOT NULL,
+  `tutor` varchar(255) DEFAULT NULL,
+  `regime` varchar(255) DEFAULT NULL,
+  `nivel` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `turma` */
 
@@ -85,17 +85,17 @@ CREATE TABLE `turma` (
 DROP TABLE IF EXISTS `utilizador`;
 
 CREATE TABLE `utilizador` (
-  `codigo` INT(255) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(255) DEFAULT NULL,
-  `entidade` VARCHAR(255) DEFAULT NULL,
-  `senha` VARCHAR(255) DEFAULT NULL,
-  `email` VARCHAR(255) DEFAULT NULL,
+  `codigo` int(255) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `entidade` varchar(255) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `utilizador` */
 
-INSERT  INTO `utilizador`(`codigo`,`nome`,`entidade`,`senha`,`email`) VALUES (1,'Ada','Administrador','ada111',NULL),(2,'lua','Docente','lua111',NULL),(3,'Teste','Docente','01',NULL);
+insert  into `utilizador`(`codigo`,`nome`,`entidade`,`senha`,`email`) values (1,'Ada','Administrador','ada111',NULL),(2,'lua','Docente','lua111',NULL),(3,'Teste','Docente','01',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

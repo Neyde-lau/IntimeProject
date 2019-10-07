@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.7.14 : Database - dbintime
+MySQL - 5.5.5-10.4.6-MariaDB : Database - dbintime
 *********************************************************************
 */
 
@@ -73,7 +73,7 @@ CREATE TABLE `turma` (
   `curso` varchar(255) NOT NULL,
   `tutor` varchar(255) DEFAULT NULL,
   `regime` varchar(255) DEFAULT NULL,
-  `nivel` int(255) DEFAULT NULL,
+  `nivel` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

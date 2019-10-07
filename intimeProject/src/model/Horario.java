@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 2, 2019 4:04:30 PM by Hibernate Tools 4.3.1
+// Generated 06-Oct-2019 16:27:09 by Hibernate Tools 4.3.1
 
 
 
@@ -22,7 +22,7 @@ public class Horario  implements java.io.Serializable {
 
 	
     public Horario(int codigoTurma) {
-        this.codigoTurma = codigoTurma;
+       
     }
     public Horario(int codigoTurma, String segunda, String terca, String quarta, String quinta, String sexta) {
        this.codigoTurma = codigoTurma;
