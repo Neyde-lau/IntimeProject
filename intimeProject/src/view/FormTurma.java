@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.xml.bind.DatatypeConverter;
 import model.Turma;
 
 /**
@@ -590,7 +591,7 @@ public class FormTurma extends javax.swing.JFrame {
         resetColor(new JPanel[]{btEncerrar, btNotif}, new JPanel[]{indEncerrar, indNotif});
     }//GEN-LAST:event_btSessaoMousePressed
     //Gravacao do codigo da turma para ligacao com horario
-    String c;
+    int c;
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int i = jTable1.getSelectedRow();
@@ -601,7 +602,7 @@ public class FormTurma extends javax.swing.JFrame {
         cbNivel.setSelectedItem((model.getValueAt(i,4)));
         textEmail.setText(model.getValueAt(i, 5).toString());
         
-        c = model.getValueAt(i, 0).toString();
+        c = (int) model.getValueAt(i, 0);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
@@ -636,7 +637,7 @@ public class FormTurma extends javax.swing.JFrame {
         // TODO add your handling code here:
         Turma t = new Turma();
         DAO<Turma> dao = new DAO<>();
-        
+        t.setCodigo(c);
         t.setCurso(textCurso.getText());
         t.setTutor(textTutor.getText());
         t.setNivel((String) cbNivel.getSelectedItem());
@@ -695,7 +696,7 @@ public class FormTurma extends javax.swing.JFrame {
 
     private void btHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHorarioActionPerformed
         // TODO add your handling code here:
-       if (c!= null){
+       if (c!=0){
            try {
                FormHorario fh = new FormHorario();
                fh.setCodigoTurma(c);
