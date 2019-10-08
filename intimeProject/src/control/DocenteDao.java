@@ -19,13 +19,29 @@ import util.NewHibernateUtil;
  * @author user
  */
 public class DocenteDao extends DAO{
-    public List<Docente> ler() {
+    public static List<Docente> ler() {
         List<Docente> t = new ArrayList<Docente>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
             t = session.createQuery("from Docente").list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return t;
+    }
+    
+        public static List<Docente> lerNome() {
+        List<Docente> t = new ArrayList<Docente>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            t = session.createQuery("SELECT Docente.codigo, Docente.nome from Docente").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {

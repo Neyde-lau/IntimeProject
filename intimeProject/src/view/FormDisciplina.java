@@ -7,6 +7,7 @@ package view;
 
 import control.DAO;
 import control.DisciplinaDao;
+import control.DocenteDao;
 
 import model.Disciplina;
 import java.awt.Color;
@@ -14,11 +15,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import model.Docente;
 import org.hibernate.Query;
 
 /**
@@ -32,6 +35,7 @@ public class FormDisciplina extends javax.swing.JFrame {
      */
     public FormDisciplina() throws SQLException {
         initComponents();
+
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         tabela.setRowSorter(new TableRowSorter(modelo));
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -40,6 +44,7 @@ public class FormDisciplina extends javax.swing.JFrame {
         indNotif.setOpaque(true);
         resetColor(new JPanel[]{btEncerrar, btSessao}, new JPanel[]{indEncerrar, indSessao});
     readJTable();
+    adicionaCombo();
     }
 
     /**
@@ -101,6 +106,8 @@ public class FormDisciplina extends javax.swing.JFrame {
         textAssistente = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        comboDocente = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -409,6 +416,16 @@ public class FormDisciplina extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("Assistente");
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Docente");
+
+        comboDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDocenteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -449,16 +466,22 @@ public class FormDisciplina extends javax.swing.JFrame {
                                     .addComponent(jLabel10))
                                 .addGap(16, 16, 16)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(13, 13, 13)
+                                    .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(25, 25, 25)
+                                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(textAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(textAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(248, Short.MAX_VALUE))
+                                .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(114, 114, 114))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +491,9 @@ public class FormDisciplina extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
@@ -560,7 +585,7 @@ public class FormDisciplina extends javax.swing.JFrame {
         d.setCredito(Integer.parseInt(textCredito.getText()));
         d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
         d.setAssistente(textAssistente.getText());
-        d.setRegente(textRegente.getText());
+        d.setRegente((String) comboDocente.getSelectedItem());
         dao.gravar(d);
         limparCampos();
         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
@@ -665,6 +690,16 @@ public class FormDisciplina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btPesquisarActionPerformed
 
+    private void comboDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDocenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDocenteActionPerformed
+List<Docente> docentes = DocenteDao.ler();
+    public void adicionaCombo(){
+        
+for(Docente d : docentes){
+ comboDocente.addItem(d);
+}
+}
     /**
      * @param args the command line arguments
      */
@@ -729,6 +764,7 @@ public class FormDisciplina extends javax.swing.JFrame {
     private java.awt.Button btRegistar;
     private java.awt.Button btRemover;
     private javax.swing.JPanel btSessao;
+    private javax.swing.JComboBox comboDocente;
     private javax.swing.JLabel encerrar;
     private javax.swing.JLabel fecharSessao;
     private javax.swing.JPanel indEncerrar;
@@ -741,6 +777,7 @@ public class FormDisciplina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

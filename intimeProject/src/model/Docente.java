@@ -65,6 +65,13 @@ public class Docente  implements java.io.Serializable {
         this.senha = senha;
     }
 
+    @Override
+    public String toString() {
+        return "" + "" + nome ;
+    }
+
+ 
+
 
 
 

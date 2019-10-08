@@ -687,6 +687,7 @@ public class FormHorario extends javax.swing.JFrame {
         
         h.setCodigoTurma(this.getCodigoTurma());
         h.setSegunda((String) cbSegunda1.getSelectedItem());
+        h.setTerca((String) cbTerca1.getSelectedItem());
         h.setQuarta((String) cbQuarta1.getSelectedItem());
         h.setQuinta((String) cbQuinta1.getSelectedItem());
         h.setSexta((String) cbSexta1.getSelectedItem());
