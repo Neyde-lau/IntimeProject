@@ -671,7 +671,11 @@ public class FormHorario extends javax.swing.JFrame {
         dao.gravar(h);
         
         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
-        
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
 
     }//GEN-LAST:event_btRegistarActionPerformed
@@ -679,8 +683,35 @@ public class FormHorario extends javax.swing.JFrame {
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
         Horario h = new Horario();
-        DAO<Horario> dao = new DAO<>();        
+        DAO<Horario> dao = new DAO<>();
         
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda1.getSelectedItem());
+        h.setQuarta((String) cbQuarta1.getSelectedItem());
+        h.setQuinta((String) cbQuinta1.getSelectedItem());
+        h.setSexta((String) cbSexta1.getSelectedItem());
+        dao.gravar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda2.getSelectedItem());
+        h.setTerca((String) cbTerca2.getSelectedItem());
+        h.setQuarta((String) cbQuarta2.getSelectedItem());
+        h.setQuinta((String) cbQuinta2.getSelectedItem());
+        h.setSexta((String) cbSexta2.getSelectedItem());
+        dao.gravar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda3.getSelectedItem());
+        h.setTerca((String) cbTerca3.getSelectedItem());
+        h.setQuarta((String) cbQuarta3.getSelectedItem());
+        h.setQuinta((String) cbQuinta3.getSelectedItem());
+        h.setSexta((String) cbSexta3.getSelectedItem());
+        dao.actualizar(h);
+        
+        JOptionPane.showMessageDialog(this, "Actualizacao feita com sucesso");      
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_btActualizarActionPerformed
 

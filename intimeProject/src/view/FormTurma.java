@@ -668,7 +668,9 @@ public class FormTurma extends javax.swing.JFrame {
         // TODO add your handling code here:
           Turma t = new Turma();
         TurmaDao dao = new TurmaDao();
-        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
+        if(resposta==0){
         t.setCurso(textCurso.getText());
         t.setTutor(textTutor.getText());
         t.setNivel((String) cbNivel.getSelectedItem());
@@ -682,7 +684,9 @@ public class FormTurma extends javax.swing.JFrame {
             readJTable();
         } catch (SQLException ex) {
             Logger.getLogger(FormTurma.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  
+        } else {}
+      
         
     }//GEN-LAST:event_btRemoverActionPerformed
 

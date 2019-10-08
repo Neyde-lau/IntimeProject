@@ -619,6 +619,9 @@
                 </Property>
                 <Property name="label" type="java.lang.String" value="Pesquisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPesquisarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Button" name="btListar">
               <Properties>

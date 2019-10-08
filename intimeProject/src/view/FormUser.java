@@ -615,7 +615,9 @@ public void limparCampos(){
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
         Utilizador u = new Utilizador();
-        // DocenteDao dao = new DocenteDao();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
+        if(resposta==0){
         UtilizadorDao dao = new UtilizadorDao();
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
@@ -630,6 +632,7 @@ public void limparCampos(){
         } catch (SQLException ex) {
             Logger.getLogger(FormUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{}
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void textEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEmailActionPerformed

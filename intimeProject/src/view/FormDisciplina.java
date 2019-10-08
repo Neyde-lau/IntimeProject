@@ -369,6 +369,11 @@ public class FormDisciplina extends javax.swing.JFrame {
         btPesquisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btPesquisar.setLabel("Pesquisar");
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarActionPerformed(evt);
+            }
+        });
 
         btListar.setBackground(new java.awt.Color(84, 127, 206));
         btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -591,7 +596,7 @@ public class FormDisciplina extends javax.swing.JFrame {
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
-                int i = tabela.getSelectedRow();
+        int i = tabela.getSelectedRow();
         TableModel model = tabela.getModel();
         textNome.setText(model.getValueAt(i, 1).toString());
         textCredito.setText(model.getValueAt(i,2).toString());
@@ -635,13 +640,15 @@ public class FormDisciplina extends javax.swing.JFrame {
                Disciplina d = new Disciplina();
      
             DisciplinaDao dao = new DisciplinaDao();
-  
+         int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
+        if(resposta==0){
         d.setNome(textNome.getText());
         d.setCredito(Integer.parseInt(textCredito.getText()));
         d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
         d.setAssistente(textAssistente.getText());
         d.setRegente(textRegente.getText());
-                d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+        d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
         dao.apagar(d.getCodigo());
         limparCampos();
         JOptionPane.showMessageDialog(this, "Removido com sucesso");
@@ -650,7 +657,13 @@ public class FormDisciplina extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+        }
     }//GEN-LAST:event_btRemoverActionPerformed
+
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

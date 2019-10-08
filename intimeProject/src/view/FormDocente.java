@@ -520,8 +520,11 @@ public class FormDocente extends javax.swing.JFrame {
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
         Docente d = new Docente();
-        // DocenteDao dao = new DocenteDao();
+       
         DocenteDao dao = new DocenteDao();
+               int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
+        if(resposta==0){
         d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
         d.setEmail(textEmail.getText());
@@ -534,6 +537,7 @@ public class FormDocente extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormDocente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{}
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
