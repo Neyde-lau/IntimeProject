@@ -51,6 +51,7 @@ public class FormHorario extends javax.swing.JFrame {
     
     public FormHorario() throws SQLException {
         initComponents();
+        preencherCaixas();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
