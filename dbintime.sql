@@ -1,9 +1,8 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.7.14 : Database - dbintime
+MySQL - 5.5.5-10.4.6-MariaDB : Database - dbintime
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -29,9 +28,11 @@ CREATE TABLE `disciplina` (
   `regente` varchar(255) DEFAULT NULL,
   `assistente` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `disciplina` */
+
+insert  into `disciplina`(`codigo`,`nome`,`credito`,`cargaHoraria`,`regente`,`assistente`) values (1,'EGO',5,90,'Emilio Mosse','Emilio Mosse'),(3,'FG',6,90,'Ida Alvarinho','Clarinda'),(4,'ADS I',4,120,'Cinquenta','Carlos Cumbana'),(5,'EDA',6,60,'Osvaldo Cossa','Osvaldo Cossa');
 
 /*Table structure for table `docente` */
 
