@@ -48,6 +48,7 @@ public class FormDocente extends javax.swing.JFrame {
                 d.getCodigo(),
                 d.getNome(),
                 d.getCategoria(),
+                d.getEmail(),
             });
         }
     }
@@ -66,7 +67,6 @@ public class FormDocente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
         cbCategoria = new javax.swing.JComboBox();
-        cbNivel = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btRegistar = new java.awt.Button();
@@ -77,7 +77,6 @@ public class FormDocente extends javax.swing.JFrame {
         textEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btNotif = new javax.swing.JPanel();
         indNotif = new javax.swing.JPanel();
@@ -113,29 +112,27 @@ public class FormDocente extends javax.swing.JFrame {
             }
         });
 
-        cbCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "            ", "Regelnte", "Assistente", " " }));
+        cbCategoria.setForeground(new java.awt.Color(0, 0, 0));
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Regente", "Assistente", " " }));
         cbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCategoriaActionPerformed(evt);
             }
         });
 
-        cbNivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "            ", "Licenciado", "Mestre", "Doutorado" }));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CODIGO", "NOME", "CATEGORIA", "NIVEL", "EMAIL"
+                "CODIGO", "NOME", "CATEGORIA", "EMAIL"
             }
         ));
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
@@ -214,10 +211,6 @@ public class FormDocente extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Email");
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel11.setText("Nivel");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -238,13 +231,9 @@ public class FormDocente extends javax.swing.JFrame {
                             .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,9 +259,7 @@ public class FormDocente extends javax.swing.JFrame {
                                 .addGap(75, 75, 75)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel11)))
+                                    .addComponent(jLabel8)))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
@@ -495,7 +482,8 @@ public class FormDocente extends javax.swing.JFrame {
         DAO<Docente> dao = new DAO<>();
         d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
-       // d.setNivel((String) cbNivel.getSelectedItem());
+        d.setEmail(textEmail.getText());
+
 
         dao.gravar(d);
         limparCampos();
@@ -518,7 +506,7 @@ public class FormDocente extends javax.swing.JFrame {
         DAO<Docente> dao = new DAO<>();
         d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
-       // d.setNivel((String) cbNivel.getSelectedItem());
+      d.setEmail(textEmail.getText());
         d.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.actualizar(d);
         try {
@@ -536,6 +524,7 @@ public class FormDocente extends javax.swing.JFrame {
         DocenteDao dao = new DocenteDao();
         d.setNome(textNome.getText());
         d.setCategoria((String) cbCategoria.getSelectedItem());
+        d.setEmail(textEmail.getText());
         d.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagar(d.getCodigo());
         limparCampos();
@@ -557,7 +546,7 @@ public class FormDocente extends javax.swing.JFrame {
         TableModel model = jTable1.getModel();
         textNome.setText(model.getValueAt(i, 1).toString());
         cbCategoria.setSelectedItem(model.getValueAt(i, 2).toString());
-        cbNivel.setSelectedItem(model.getValueAt(i, 3).toString());
+        textEmail.setText(model.getValueAt(i, 3).toString());
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -685,7 +674,6 @@ public class FormDocente extends javax.swing.JFrame {
     private java.awt.Button btRemover;
     private javax.swing.JPanel btSessao;
     private javax.swing.JComboBox cbCategoria;
-    private javax.swing.JComboBox cbNivel;
     private javax.swing.JLabel encerrar;
     private javax.swing.JLabel fecharSessao;
     private javax.swing.JPanel indEncerrar;
@@ -693,7 +681,6 @@ public class FormDocente extends javax.swing.JFrame {
     private javax.swing.JPanel indSessao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;

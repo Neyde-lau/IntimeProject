@@ -46,7 +46,10 @@ public class FormUser extends javax.swing.JFrame {
                 u.getCodigo(),
                 u.getNome(),
                 u.getEntidade(),
-                u.getSenha(),});
+                 u.getSenha(),
+                u.getEmail(),
+                
+               });
         }
     }
 
@@ -541,7 +544,8 @@ public class FormUser extends javax.swing.JFrame {
         textNome.setText(model.getValueAt(i, 1).toString());
         cbEntidade.setSelectedItem(model.getValueAt(i, 2).toString());
 
-        textEmail.setText(model.getValueAt(i, 3).toString());
+        textSenha.setText(model.getValueAt(i, 3).toString());
+        textEmail.setText(model.getValueAt(i, 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
@@ -552,7 +556,8 @@ public class FormUser extends javax.swing.JFrame {
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
       
-        u.setSenha(textEmail.getText());
+        u.setSenha(textSenha.getText());
+        u.setEmail(textEmail.getText());
 
         dao.gravar(u);
         limparCampos();
@@ -577,8 +582,8 @@ public void limparCampos(){
         DAO<Utilizador> dao = new DAO<>();
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
-      
-        u.setSenha(textEmail.getText());
+       u.setSenha(textSenha.getText());
+        u.setEmail(textEmail.getText());
         u.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.actualizar(u);
         try {
@@ -592,7 +597,7 @@ public void limparCampos(){
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do docente");
+        String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do utilizador");
         Utilizador u = new Utilizador();
         UtilizadorDao dao = new UtilizadorDao();
         dao.Pesquisa(resposta);
@@ -614,7 +619,8 @@ public void limparCampos(){
         UtilizadorDao dao = new UtilizadorDao();
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
-        u.setSenha(textEmail.getText());
+          u.setSenha(textSenha.getText());
+        u.setEmail(textEmail.getText());
         u.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagar(u.getCodigo());
         limparCampos();
