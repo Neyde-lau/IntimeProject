@@ -693,21 +693,21 @@ public class FormHorario extends javax.swing.JFrame {
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
-             cbSegunda1.setSelectedItem(tabela.getValueAt(1, 1));
-             cbSegunda2.setSelectedItem(tabela.getValueAt(2, 1));
-             cbSegunda3.setSelectedItem(tabela.getValueAt(3, 1));
-             cbTerca1.setSelectedItem(tabela.getValueAt(1, 2));
-             cbTerca2.setSelectedItem(tabela.getValueAt(2, 2));
-             cbTerca3.setSelectedItem(tabela.getValueAt(3, 2));
-             cbQuarta1.setSelectedItem(tabela.getValueAt(1, 3));
-             cbQuarta2.setSelectedItem(tabela.getValueAt(2, 3));
-             cbQuarta3.setSelectedItem(tabela.getValueAt(3, 3));
-             cbQuinta1.setSelectedItem(tabela.getValueAt(1, 4));
-             cbQuinta2.setSelectedItem(tabela.getValueAt(2, 4));
-             cbQuinta3.setSelectedItem(tabela.getValueAt(3, 4));
-             cbSexta1.setSelectedItem(tabela.getValueAt(1, 5));
-             cbSexta2.setSelectedItem(tabela.getValueAt(2, 5));
-             cbSexta3.setSelectedItem(tabela.getValueAt(3, 5));
+             cbSegunda1.setSelectedItem(tabela.getValueAt(1, 2));
+             cbSegunda2.setSelectedItem(tabela.getValueAt(2, 2));
+             cbSegunda3.setSelectedItem(tabela.getValueAt(3, 2));
+             cbTerca1.setSelectedItem(tabela.getValueAt(1, 3));
+             cbTerca2.setSelectedItem(tabela.getValueAt(2, 3));
+             cbTerca3.setSelectedItem(tabela.getValueAt(3, 3));
+             cbQuarta1.setSelectedItem(tabela.getValueAt(1, 4));
+             cbQuarta2.setSelectedItem(tabela.getValueAt(2, 4));
+             cbQuarta3.setSelectedItem(tabela.getValueAt(3, 4));
+             cbQuinta1.setSelectedItem(tabela.getValueAt(1, 5));
+             cbQuinta2.setSelectedItem(tabela.getValueAt(2, 5));
+             cbQuinta3.setSelectedItem(tabela.getValueAt(3, 5));
+             cbSexta1.setSelectedItem(tabela.getValueAt(1, 6));
+             cbSexta2.setSelectedItem(tabela.getValueAt(2, 6));
+             cbSexta3.setSelectedItem(tabela.getValueAt(3, 6));
     
     }//GEN-LAST:event_tabelaMouseClicked
           int i;
