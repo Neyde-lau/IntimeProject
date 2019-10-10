@@ -90,7 +90,7 @@ public class FormHorario extends javax.swing.JFrame {
             
         for (Horario h : horarioFinal) {
             modelo.addRow(new Object[]{
-                
+                " ",
                 h.getSegunda(),
                 h.getTerca(),
                 h.getQuarta(),
@@ -149,6 +149,7 @@ public class FormHorario extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btNotif = new javax.swing.JPanel();
@@ -191,7 +192,7 @@ public class FormHorario extends javax.swing.JFrame {
         cbSexta1 = new javax.swing.JComboBox();
         cbSexta2 = new javax.swing.JComboBox();
         cbSexta3 = new javax.swing.JComboBox();
-        btListar = new java.awt.Button();
+        btVoltar = new java.awt.Button();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -466,42 +467,14 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setText("Aula 2");
 
-        cbSegunda2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSegunda3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btListar.setActionCommand("Voltar");
-        btListar.setBackground(new java.awt.Color(84, 127, 206));
-        btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btListar.setForeground(new java.awt.Color(255, 255, 255));
-        btListar.setLabel("Voltar");
-        btListar.addActionListener(new java.awt.event.ActionListener() {
+        btVoltar.setActionCommand("Voltar");
+        btVoltar.setBackground(new java.awt.Color(84, 127, 206));
+        btVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btVoltar.setLabel("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btListarActionPerformed(evt);
+                btVoltarActionPerformed(evt);
             }
         });
 
@@ -560,7 +533,7 @@ public class FormHorario extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(96, 96, 96)
-                                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +582,7 @@ public class FormHorario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124))
@@ -716,8 +689,6 @@ public class FormHorario extends javax.swing.JFrame {
          Horario h = new Horario();
         DAO<Horario> dao = new DAO<>();
         if (this.codigoTurma!=0){
-      
-        
         h.setCodigoTurma(this.getCodigoTurma());
         h.setSegunda((String) cbSegunda1.getSelectedItem());
         h.setTerca((String) cbTerca1.getSelectedItem());
@@ -741,10 +712,14 @@ public class FormHorario extends javax.swing.JFrame {
         dao.gravar(h);
         
         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
-        
+             try {
+                 readJTable();
+             } catch (SQLException ex) {
+                 Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
         else {
-             i = JOptionPane.showConfirmDialog(null, "O Horario desta turma já existe, deseja substituir?");
+         i = JOptionPane.showConfirmDialog(null, "O Horario desta turma já existe, deseja substituir?");
         if (i==0){
         h.setCodigoTurma(this.getCodigoTurma());
         h.setSegunda((String) cbSegunda1.getSelectedItem());
@@ -767,7 +742,11 @@ public class FormHorario extends javax.swing.JFrame {
         h.setQuinta((String) cbQuinta3.getSelectedItem());
         h.setSexta((String) cbSexta3.getSelectedItem());
         dao.actualizar(h);
-            
+             try {
+                 readJTable();
+             } catch (SQLException ex) {
+                 Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
         
         }
@@ -799,10 +778,14 @@ public class FormHorario extends javax.swing.JFrame {
         h.setQuinta((String) cbQuinta3.getSelectedItem());
         h.setSexta((String) cbSexta3.getSelectedItem());
         dao.actualizar(h);
-       
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btActualizarActionPerformed
 
-    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
 
         try {
             FormTurma ft = new FormTurma();
@@ -812,7 +795,7 @@ public class FormHorario extends javax.swing.JFrame {
             Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_btListarActionPerformed
+    }//GEN-LAST:event_btVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -876,10 +859,10 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private java.awt.Button btActualizar;
     private javax.swing.JPanel btEncerrar;
-    private java.awt.Button btListar;
     private javax.swing.JPanel btNotif;
     private java.awt.Button btRegistar;
     private javax.swing.JPanel btSessao;
+    private java.awt.Button btVoltar;
     private javax.swing.JComboBox cbQuarta1;
     private javax.swing.JComboBox cbQuarta2;
     private javax.swing.JComboBox cbQuarta3;
