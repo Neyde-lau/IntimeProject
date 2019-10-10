@@ -6,6 +6,9 @@
 package view;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -261,14 +264,17 @@ public class MenuAdmin extends javax.swing.JFrame {
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 1580, 60));
 
         btHorario.setBackground(new java.awt.Color(255, 255, 255));
-        btHorario.setForeground(new java.awt.Color(0, 0, 0));
         btHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-timetable-100.png"))); // NOI18N
         jPanel1.add(btHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 640, 280, 250));
 
         btTurma.setBackground(new java.awt.Color(255, 255, 255));
-        btTurma.setForeground(new java.awt.Color(0, 0, 0));
         btTurma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-student-male-100.png"))); // NOI18N
         btTurma.setToolTipText("");
+        btTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTurmaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 640, 270, 250));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -297,8 +303,12 @@ public class MenuAdmin extends javax.swing.JFrame {
         );
 
         btDocente.setBackground(new java.awt.Color(255, 255, 255));
-        btDocente.setForeground(new java.awt.Color(0, 0, 0));
         btDocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-teacher-100.png"))); // NOI18N
+        btDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDocenteActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -364,7 +374,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(23, 23, 23))
         );
@@ -393,12 +403,21 @@ public class MenuAdmin extends javax.swing.JFrame {
         );
 
         btUtilizador.setBackground(new java.awt.Color(255, 255, 255));
-        btUtilizador.setForeground(new java.awt.Color(0, 0, 0));
         btUtilizador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-user-100.png"))); // NOI18N
+        btUtilizador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUtilizadorActionPerformed(evt);
+            }
+        });
 
         btDisciplina.setBackground(new java.awt.Color(255, 255, 255));
         btDisciplina.setForeground(new java.awt.Color(102, 102, 102));
         btDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-books-100.png"))); // NOI18N
+        btDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDisciplinaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -512,6 +531,51 @@ public class MenuAdmin extends javax.swing.JFrame {
         indNotif.setOpaque(true);
         resetColor(new JPanel[]{btEncerrar, btNotif}, new JPanel[]{indEncerrar, indNotif});
     }//GEN-LAST:event_btSessaoMousePressed
+
+    private void btUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUtilizadorActionPerformed
+        try {
+            // TODO add your handling code here:
+            FormUser fu = new FormUser();
+            fu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btUtilizadorActionPerformed
+
+    private void btDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDisciplinaActionPerformed
+        try {
+            // TODO add your handling code here:
+            FormDisciplina fu = new FormDisciplina();
+            fu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btDisciplinaActionPerformed
+
+    private void btTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTurmaActionPerformed
+        try {
+            // TODO add your handling code here:
+            FormTurma fu = new FormTurma();
+            fu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btTurmaActionPerformed
+
+    private void btDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDocenteActionPerformed
+        try {
+            // TODO add your handling code here:
+            FormDocente fu = new FormDocente();
+            fu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btDocenteActionPerformed
 
     /**
      * @param args the command line arguments

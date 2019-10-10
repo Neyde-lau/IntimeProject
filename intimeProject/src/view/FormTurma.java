@@ -95,6 +95,7 @@ public class FormTurma extends javax.swing.JFrame {
         cbRegime = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         textTutor = new javax.swing.JTextField();
+        btVoltar = new java.awt.Button();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -420,6 +421,18 @@ public class FormTurma extends javax.swing.JFrame {
             }
         });
 
+        btVoltar.setActionCommand("Voltar");
+        btVoltar.setBackground(new java.awt.Color(84, 127, 206));
+        btVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btVoltar.setLabel("Voltar");
+        btVoltar.setName("Voltar"); // NOI18N
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -459,7 +472,10 @@ public class FormTurma extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(btHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,7 +518,8 @@ public class FormTurma extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -722,6 +739,14 @@ public class FormTurma extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textTutorActionPerformed
 
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        MenuAdmin ma = new MenuAdmin();
+        ma.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btVoltarActionPerformed
+   
     /**
      * @param args the command line arguments
      */
@@ -787,6 +812,7 @@ public class FormTurma extends javax.swing.JFrame {
     private java.awt.Button btRegistar;
     private java.awt.Button btRemover;
     private javax.swing.JPanel btSessao;
+    private java.awt.Button btVoltar;
     private javax.swing.JComboBox cbNivel;
     private javax.swing.JComboBox cbRegime;
     private javax.swing.JLabel encerrar;
