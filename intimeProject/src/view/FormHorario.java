@@ -34,6 +34,7 @@ public class FormHorario extends javax.swing.JFrame {
     public int getCodigoTurma(){ 
         try {
             readJTable();
+           // preencherCaixas();
             
         } catch (SQLException ex) {
             Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,12 +104,13 @@ public class FormHorario extends javax.swing.JFrame {
             
         DisciplinaDao dao = new DisciplinaDao();
        ArrayList <Disciplina> d = new ArrayList<>();
-        
+       d = (ArrayList<Disciplina>) dao.ler();
+       
         ArrayList<String> lista = new ArrayList<>();
        
-        d.stream().forEach((d1) -> {
+        for (Disciplina d1 : d) {
             lista.add(d1.getNome());
-        });
+        }
         
         return lista;
     }
@@ -125,6 +127,16 @@ public class FormHorario extends javax.swing.JFrame {
              cbTerca1.addItem(disciplina);
              cbTerca2.addItem(disciplina);
              cbTerca3.addItem(disciplina); 
+             cbQuarta1.addItem(disciplina);
+             cbQuarta2.addItem(disciplina);
+             cbQuarta3.addItem(disciplina);
+             cbQuinta1.addItem(disciplina);
+             cbQuinta2.addItem(disciplina);
+             cbQuinta3.addItem(disciplina);
+             cbSexta1.addItem(disciplina);
+             cbSexta2.addItem(disciplina);
+             cbSexta3.addItem(disciplina);
+            
         });
         
         }
@@ -452,34 +464,7 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setText("Aula 2");
 
-        cbSegunda2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSegunda3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        
         btListar.setActionCommand("Voltar");
         btListar.setBackground(new java.awt.Color(84, 127, 206));
         btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
