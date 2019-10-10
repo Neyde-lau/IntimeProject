@@ -149,8 +149,6 @@ public class FormHorario extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        intimeProjectPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("intimeProjectPU").createEntityManager();
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btNotif = new javax.swing.JPanel();
@@ -378,9 +376,9 @@ public class FormHorario extends javax.swing.JFrame {
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"AULA 1", null, null, null, null, null},
-                {"AULA 2", null, null, null, null, null},
-                {"AULA 3", null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -390,11 +388,11 @@ public class FormHorario extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "AULA", "SEGUNDA", "TERCA", "QUARTA", "QUINTA", "SEXTA"
+                "HORA", "SEGUNDA", "TERCA", "QUARTA", "QUINTA", "SEXTA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, true, true
+                true, true, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -405,12 +403,16 @@ public class FormHorario extends javax.swing.JFrame {
         tabela.setSelectionBackground(new java.awt.Color(120, 168, 252));
         tabela.setShowHorizontalLines(false);
         tabela.setShowVerticalLines(false);
+        tabela.getTableHeader().setReorderingAllowed(false);
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         btRegistar.setBackground(new java.awt.Color(84, 127, 206));
         btRegistar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -464,7 +466,34 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setText("Aula 2");
 
-        
+        cbSegunda2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSegunda3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTerca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTerca2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTerca3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuarta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuarta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuarta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuinta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuinta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbQuinta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSexta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSexta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         btListar.setActionCommand("Voltar");
         btListar.setBackground(new java.awt.Color(84, 127, 206));
         btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -664,13 +693,30 @@ public class FormHorario extends javax.swing.JFrame {
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
+             cbSegunda1.setSelectedItem(tabela.getValueAt(1, 1));
+             cbSegunda2.setSelectedItem(tabela.getValueAt(2, 1));
+             cbSegunda3.setSelectedItem(tabela.getValueAt(3, 1));
+             cbTerca1.setSelectedItem(tabela.getValueAt(1, 2));
+             cbTerca2.setSelectedItem(tabela.getValueAt(2, 2));
+             cbTerca3.setSelectedItem(tabela.getValueAt(3, 2));
+             cbQuarta1.setSelectedItem(tabela.getValueAt(1, 3));
+             cbQuarta2.setSelectedItem(tabela.getValueAt(2, 3));
+             cbQuarta3.setSelectedItem(tabela.getValueAt(3, 3));
+             cbQuinta1.setSelectedItem(tabela.getValueAt(1, 4));
+             cbQuinta2.setSelectedItem(tabela.getValueAt(2, 4));
+             cbQuinta3.setSelectedItem(tabela.getValueAt(3, 4));
+             cbSexta1.setSelectedItem(tabela.getValueAt(1, 5));
+             cbSexta2.setSelectedItem(tabela.getValueAt(2, 5));
+             cbSexta3.setSelectedItem(tabela.getValueAt(3, 5));
     
     }//GEN-LAST:event_tabelaMouseClicked
-
+          int i;
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
-        Horario h = new Horario();
+         Horario h = new Horario();
         DAO<Horario> dao = new DAO<>();
+        if (this.codigoTurma!=0){
+      
         
         h.setCodigoTurma(this.getCodigoTurma());
         h.setSegunda((String) cbSegunda1.getSelectedItem());
@@ -696,7 +742,35 @@ public class FormHorario extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
         
+        }
+        else {
+             i = JOptionPane.showConfirmDialog(null, "O Horario desta turma já existe, deseja substituir?");
+        if (i==0){
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda1.getSelectedItem());
+        h.setTerca((String) cbTerca1.getSelectedItem());
+        h.setQuarta((String) cbQuarta1.getSelectedItem());
+        h.setQuinta((String) cbQuinta1.getSelectedItem());
+        h.setSexta((String) cbSexta1.getSelectedItem());
+        dao.actualizar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda2.getSelectedItem());
+        h.setTerca((String) cbTerca2.getSelectedItem());
+        h.setQuarta((String) cbQuarta2.getSelectedItem());
+        h.setQuinta((String) cbQuinta2.getSelectedItem());
+        h.setSexta((String) cbSexta2.getSelectedItem());
+        dao.actualizar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda3.getSelectedItem());
+        h.setTerca((String) cbTerca3.getSelectedItem());
+        h.setQuarta((String) cbQuarta3.getSelectedItem());
+        h.setQuinta((String) cbQuinta3.getSelectedItem());
+        h.setSexta((String) cbSexta3.getSelectedItem());
+        dao.actualizar(h);
+            
+        }
         
+        }
 
     }//GEN-LAST:event_btRegistarActionPerformed
 
@@ -704,7 +778,27 @@ public class FormHorario extends javax.swing.JFrame {
         // TODO add your handling code here:
         Horario h = new Horario();
         DAO<Horario> dao = new DAO<>();        
-        
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda1.getSelectedItem());
+        h.setTerca((String) cbTerca1.getSelectedItem());
+        h.setQuarta((String) cbQuarta1.getSelectedItem());
+        h.setQuinta((String) cbQuinta1.getSelectedItem());
+        h.setSexta((String) cbSexta1.getSelectedItem());
+        dao.actualizar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda2.getSelectedItem());
+        h.setTerca((String) cbTerca2.getSelectedItem());
+        h.setQuarta((String) cbQuarta2.getSelectedItem());
+        h.setQuinta((String) cbQuinta2.getSelectedItem());
+        h.setSexta((String) cbSexta2.getSelectedItem());
+        dao.actualizar(h);
+        h.setCodigoTurma(this.getCodigoTurma());
+        h.setSegunda((String) cbSegunda3.getSelectedItem());
+        h.setTerca((String) cbTerca3.getSelectedItem());
+        h.setQuarta((String) cbQuarta3.getSelectedItem());
+        h.setQuinta((String) cbQuinta3.getSelectedItem());
+        h.setSexta((String) cbSexta3.getSelectedItem());
+        dao.actualizar(h);
        
     }//GEN-LAST:event_btActualizarActionPerformed
 
