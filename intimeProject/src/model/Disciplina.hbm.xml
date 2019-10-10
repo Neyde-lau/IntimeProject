@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-Oct-2019 16:27:10 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Disciplina" table="disciplina" catalog="dbintime" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" not-null="true" />
+        </property>
+        <property name="credito" type="java.lang.Integer">
+            <column name="credito" />
+        </property>
+        <property name="cargaHoraria" type="java.lang.Integer">
+            <column name="cargaHoraria" />
+        </property>
+        <property name="regente" type="string">
+            <column name="regente" />
+        </property>
+        <property name="assistente" type="string">
+            <column name="assistente" />
+        </property>
+    </class>
+</hibernate-mapping>
