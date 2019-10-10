@@ -6,6 +6,7 @@
 package view;
 
 import control.DAO;
+import control.DisciplinaDao;
 import control.HorarioDao;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.Disciplina;
 import model.Horario;
 
 /**
@@ -25,12 +27,20 @@ import model.Horario;
 public class FormHorario extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormHorario1
+     * Creates new form FormHorario
      */
     private int codigoTurma;
     
-    public int getCodigoTurma(){
-        return this.codigoTurma;
+    public int getCodigoTurma(){ 
+        try {
+            readJTable();
+           // preencherCaixas();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FormHorario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return this.codigoTurma;
+       
     }
     
     public void setCodigoTurma(int ct){
@@ -42,11 +52,12 @@ public class FormHorario extends javax.swing.JFrame {
     
     public FormHorario() throws SQLException {
         initComponents();
+        preencherCaixas();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         tabela.setRowSorter(new TableRowSorter(modelo));
-        readJTable();
+        
     }
     
         public ArrayList<Horario> seleccionarHorario(int c) {
@@ -79,7 +90,7 @@ public class FormHorario extends javax.swing.JFrame {
             
         for (Horario h : horarioFinal) {
             modelo.addRow(new Object[]{
-                "",
+                
                 h.getSegunda(),
                 h.getTerca(),
                 h.getQuarta(),
@@ -89,6 +100,46 @@ public class FormHorario extends javax.swing.JFrame {
                 });
         }
     }
+       public ArrayList<String> buscarDisciplinas() {
+            
+        DisciplinaDao dao = new DisciplinaDao();
+       ArrayList <Disciplina> d = new ArrayList<>();
+       d = (ArrayList<Disciplina>) dao.ler();
+       
+        ArrayList<String> lista = new ArrayList<>();
+       
+        for (Disciplina d1 : d) {
+            lista.add(d1.getNome());
+        }
+        
+        return lista;
+    }
+        public void preencherCaixas(){
+         ArrayList <String> disciplinas = null;
+         
+       disciplinas = (ArrayList <String>) buscarDisciplinas();
+               
+         
+         disciplinas.stream().forEach((disciplina) -> {
+             cbSegunda1.addItem(disciplina);
+             cbSegunda2.addItem(disciplina);
+             cbSegunda3.addItem(disciplina);
+             cbTerca1.addItem(disciplina);
+             cbTerca2.addItem(disciplina);
+             cbTerca3.addItem(disciplina); 
+             cbQuarta1.addItem(disciplina);
+             cbQuarta2.addItem(disciplina);
+             cbQuarta3.addItem(disciplina);
+             cbQuinta1.addItem(disciplina);
+             cbQuinta2.addItem(disciplina);
+             cbQuinta3.addItem(disciplina);
+             cbSexta1.addItem(disciplina);
+             cbSexta2.addItem(disciplina);
+             cbSexta3.addItem(disciplina);
+            
+        });
+        
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +150,7 @@ public class FormHorario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        intimeProjectPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("intimeProjectPU").createEntityManager();
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btNotif = new javax.swing.JPanel();
@@ -328,6 +380,7 @@ public class FormHorario extends javax.swing.JFrame {
             new Object [][] {
                 {"AULA 1", null, null, null, null, null},
                 {"AULA 2", null, null, null, null, null},
+                {"AULA 3", null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -411,36 +464,7 @@ public class FormHorario extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setText("Aula 2");
 
-        cbSegunda1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSegunda2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSegunda3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbTerca3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuarta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbQuinta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbSexta3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        
         btListar.setActionCommand("Voltar");
         btListar.setBackground(new java.awt.Color(84, 127, 206));
         btListar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -782,6 +806,7 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JPanel indEncerrar;
     private javax.swing.JPanel indNotif;
     private javax.swing.JPanel indSessao;
+    private javax.persistence.EntityManager intimeProjectPUEntityManager;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
