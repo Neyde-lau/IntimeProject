@@ -6,6 +6,7 @@
 package view;
 
 import control.DAO;
+import control.UtilizadorDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -203,7 +204,7 @@ public class Login extends javax.swing.JFrame {
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
         // TODO add your handling code here:
             Utilizador u = new Utilizador();
-            DAO<Utilizador> dao = new DAO<>();
+            UtilizadorDao dao = new UtilizadorDao();
          if(dao.autenticarUtilizador(textNome.getText(),textSenha.getText())){
              if(u.getEntidade().equals("docente")){
                  try {

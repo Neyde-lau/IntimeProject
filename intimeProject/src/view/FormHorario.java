@@ -27,7 +27,7 @@ import model.Horario;
 public class FormHorario extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormHorario1
+     * Creates new form FormHorario
      */
     private int codigoTurma;
     
@@ -89,7 +89,7 @@ public class FormHorario extends javax.swing.JFrame {
             
         for (Horario h : horarioFinal) {
             modelo.addRow(new Object[]{
-                "",
+                
                 h.getSegunda(),
                 h.getTerca(),
                 h.getQuarta(),
@@ -102,20 +102,21 @@ public class FormHorario extends javax.swing.JFrame {
        public ArrayList<String> buscarDisciplinas() {
             
         DisciplinaDao dao = new DisciplinaDao();
-        ArrayList<Disciplina> d = (ArrayList<Disciplina>) dao.ler();
+       ArrayList <Disciplina> d = new ArrayList<>();
         
         ArrayList<String> lista = new ArrayList<>();
        
-        for (Disciplina d1 : d) {
+        d.stream().forEach((d1) -> {
             lista.add(d1.getNome());
-            }
+        });
         
         return lista;
     }
         public void preencherCaixas(){
          ArrayList <String> disciplinas = null;
          
-         disciplinas.addAll(buscarDisciplinas());
+       disciplinas = (ArrayList <String>) buscarDisciplinas();
+               
          
          disciplinas.stream().forEach((disciplina) -> {
              cbSegunda1.addItem(disciplina);
@@ -125,6 +126,7 @@ public class FormHorario extends javax.swing.JFrame {
              cbTerca2.addItem(disciplina);
              cbTerca3.addItem(disciplina); 
         });
+        
         }
 
     /**
@@ -137,7 +139,6 @@ public class FormHorario extends javax.swing.JFrame {
     private void initComponents() {
 
         intimeProjectPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("intimeProjectPU").createEntityManager();
-        
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btNotif = new javax.swing.JPanel();
@@ -367,6 +368,7 @@ public class FormHorario extends javax.swing.JFrame {
             new Object [][] {
                 {"AULA 1", null, null, null, null, null},
                 {"AULA 2", null, null, null, null, null},
+                {"AULA 3", null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -814,7 +816,6 @@ public class FormHorario extends javax.swing.JFrame {
     private javax.swing.JComboBox cbTerca1;
     private javax.swing.JComboBox cbTerca2;
     private javax.swing.JComboBox cbTerca3;
-    private javax.persistence.Query disciplinaQuery;
     private javax.swing.JLabel encerrar;
     private javax.swing.JLabel fecharSessao;
     private javax.swing.JPanel indEncerrar;
