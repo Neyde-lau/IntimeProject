@@ -102,10 +102,6 @@ public class FormDisciplina extends javax.swing.JFrame {
         btPesquisar = new java.awt.Button();
         btListar = new java.awt.Button();
         btRemover = new java.awt.Button();
-        textRegente = new javax.swing.JTextField();
-        textAssistente = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         comboDocente = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
@@ -319,22 +315,22 @@ public class FormDisciplina extends javax.swing.JFrame {
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "CODIGO", "NOME", "CREDITOS", "CARGA HORARIA", "REGENTE", "ASSISTENTE"
+                "CODIGO", "NOME", "CREDITOS", "CARGA HORARIA", "DOCENTE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, true, true
+                true, true, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -402,20 +398,6 @@ public class FormDisciplina extends javax.swing.JFrame {
             }
         });
 
-        textAssistente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textAssistenteActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("Regente");
-
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel11.setText("Assistente");
-
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Docente");
@@ -433,54 +415,42 @@ public class FormDisciplina extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(242, 242, 242)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textCarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textCredito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textRegente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel10))
-                                .addGap(16, 16, 16)))
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(13, 13, 13)
-                                    .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(25, 25, 25)
-                                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(textAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textCarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(510, 510, 510)
+                        .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(11, 11, 11)
+                                .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(248, 248, 248))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
         );
         jPanel2Layout.setVerticalGroup(
@@ -491,33 +461,23 @@ public class FormDisciplina extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel2))
+                .addGap(58, 58, 58)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textRegente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
         );
 
         bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 1480, 820));
@@ -549,10 +509,6 @@ public class FormDisciplina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNomeActionPerformed
-
     private void btNotifMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btNotifMousePressed
         // TODO add your handling code here:
         setColor(btNotif);
@@ -574,38 +530,13 @@ public class FormDisciplina extends javax.swing.JFrame {
         indNotif.setOpaque(true);
         resetColor(new JPanel[]{btEncerrar, btNotif}, new JPanel[]{indEncerrar, indNotif});
     }//GEN-LAST:event_btSessaoMousePressed
-
-    private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
-        // TODO add your handling code here:
-        Disciplina d = new Disciplina();
-     
-            DAO<Disciplina> dao = new DAO<>();
-  
-        d.setNome(textNome.getText());
-        d.setCredito(Integer.parseInt(textCredito.getText()));
-        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-        d.setAssistente(textAssistente.getText());
-        d.setRegente((String) comboDocente.getSelectedItem());
-        dao.gravar(d);
-        limparCampos();
-        JOptionPane.showMessageDialog(this, "Salvo com sucesso");
-        try {
-            readJTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btRegistarActionPerformed
     public void limparCampos() {
         textNome.setText("");
-        textAssistente.setText("");
-        textRegente.setText("");
+        comboDocente.setSelectedItem("");
+        //textRegente.setText("");
         textCarga.setText("");
     }
     
-    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btListarActionPerformed
-
     private void encerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_encerrarMousePressed
         // TODO add your handling code here:
         System.exit(0);
@@ -619,29 +550,56 @@ public class FormDisciplina extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btEncerrarMouseClicked
 
-    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+    private void comboDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDocenteActionPerformed
         // TODO add your handling code here:
-        int i = tabela.getSelectedRow();
-        TableModel model = tabela.getModel();
-        textNome.setText(model.getValueAt(i, 1).toString());
-        textCredito.setText(model.getValueAt(i,2).toString());
-        textCarga.setText(model.getValueAt(i,3).toString());
-        textRegente.setText(model.getValueAt(i, 4).toString());
-        textAssistente.setText(model.getValueAt(i, 5).toString());
-    }//GEN-LAST:event_tabelaMouseClicked
+    }//GEN-LAST:event_comboDocenteActionPerformed
+
+    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
+        // TODO add your handling code here:
+        Disciplina d = new Disciplina();
+
+        DisciplinaDao dao = new DisciplinaDao();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
+        if(resposta==0){
+            d.setNome(textNome.getText());
+            d.setCredito(Integer.parseInt(textCredito.getText()));
+            d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
+           // d.setAssistente(textAssistente.getText());
+            d.setRegente((String) comboDocente.getSelectedItem());
+            d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+            dao.apagar(d.getCodigo());
+            limparCampos();
+            JOptionPane.showMessageDialog(this, "Removido com sucesso");
+            try {
+                readJTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+        }
+    }//GEN-LAST:event_btRemoverActionPerformed
+
+    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btListarActionPerformed
+
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
-               Disciplina d = new Disciplina();
-     
-            DAO<Disciplina> dao = new DAO<>();
-  
+        Disciplina d = new Disciplina();
+
+        DAO<Disciplina> dao = new DAO<>();
+
         d.setNome(textNome.getText());
         d.setCredito(Integer.parseInt(textCredito.getText()));
         d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-        d.setAssistente(textAssistente.getText());
-        d.setRegente(textRegente.getText());
-           d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+       // d.setAssistente(textAssistente.getText());
+        d.setRegente((String) comboDocente.getSelectedItem());
+        d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
         dao.actualizar(d);
         limparCampos();
         JOptionPane.showMessageDialog(this, "Actualizado com sucesso");
@@ -652,47 +610,45 @@ public class FormDisciplina extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btActualizarActionPerformed
 
-    private void textAssistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAssistenteActionPerformed
+    private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textAssistenteActionPerformed
+        Disciplina d = new Disciplina();
 
-    private void textCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCargaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCargaActionPerformed
+        DAO<Disciplina> dao = new DAO<>();
 
-    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
-               Disciplina d = new Disciplina();
-     
-            DisciplinaDao dao = new DisciplinaDao();
-         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int resposta = JOptionPane.showConfirmDialog(this, "Realmente deseja realizar esta operacao", "Title on Box", dialogButton);
-        if(resposta==0){
         d.setNome(textNome.getText());
         d.setCredito(Integer.parseInt(textCredito.getText()));
         d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-        d.setAssistente(textAssistente.getText());
-        d.setRegente(textRegente.getText());
-        d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
-        dao.apagar(d.getCodigo());
+        //d.setAssistente(.getText());
+        d.setRegente((String) comboDocente.getSelectedItem());
+        dao.gravar(d);
         limparCampos();
-        JOptionPane.showMessageDialog(this, "Removido com sucesso");
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso");
         try {
             readJTable();
         } catch (SQLException ex) {
             Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }else{
-        }
-    }//GEN-LAST:event_btRemoverActionPerformed
+    }//GEN-LAST:event_btRegistarActionPerformed
 
-    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btPesquisarActionPerformed
+        int i = tabela.getSelectedRow();
+        TableModel model = tabela.getModel();
+        textNome.setText(model.getValueAt(i, 1).toString());
+        textCredito.setText(model.getValueAt(i,2).toString());
+        textCarga.setText(model.getValueAt(i,3).toString());
+        comboDocente.setSelectedItem(model.getValueAt(i, 4).toString());
+        //textAssistente.setText(model.getValueAt(i, 5).toString());
+    }//GEN-LAST:event_tabelaMouseClicked
 
-    private void comboDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDocenteActionPerformed
+    private void textCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCargaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboDocenteActionPerformed
+    }//GEN-LAST:event_textCargaActionPerformed
+
+    private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNomeActionPerformed
 List<Docente> docentes = DocenteDao.ler();
     public void adicionaCombo(){
         
@@ -771,8 +727,6 @@ for(Docente d : docentes){
     private javax.swing.JPanel indNotif;
     private javax.swing.JPanel indSessao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -786,10 +740,8 @@ for(Docente d : docentes){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel notificacoes;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextField textAssistente;
     private javax.swing.JTextField textCarga;
     private javax.swing.JTextField textCredito;
     private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textRegente;
     // End of variables declaration//GEN-END:variables
 }

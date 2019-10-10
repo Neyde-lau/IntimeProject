@@ -40,7 +40,7 @@ public class DisciplinaDao extends DAO{
         }
     }
         
-            public List<Disciplina> ler() {
+            public static List<Disciplina> ler() {
         List<Disciplina> t = new ArrayList<Disciplina>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();

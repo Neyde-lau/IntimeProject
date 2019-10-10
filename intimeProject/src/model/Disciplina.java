@@ -74,6 +74,11 @@ public class Disciplina  implements java.io.Serializable {
         this.assistente = assistente;
     }
 
+    @Override
+    public String toString() {
+        return "" + "" + nome;
+    }
+
 
 
 
