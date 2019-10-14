@@ -5,8 +5,15 @@
  */
 package view;
 
+import control.DisciplinaDao;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Disciplina;
 
 /**
  *
@@ -17,10 +24,28 @@ public class FormVerDisciplina extends javax.swing.JFrame {
     /**
      * Creates new form FormVerDisciplina
      */
-    public FormVerDisciplina() {
+    public FormVerDisciplina() throws SQLException {
         initComponents();
+        readJTable();
     }
+    public void readJTable() throws SQLException {
 
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        DisciplinaDao dao = new DisciplinaDao();
+        for (Disciplina d : dao.ler()) {
+            modelo.addRow(new Object[]{
+                d.getCodigo(),
+                d.getNome(),
+                d.getCredito(),
+                d.getCargaHoraria(),
+                d.getRegente(),
+                d.getAssistente(),
+             
+            });
+        
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,7 +256,7 @@ public class FormVerDisciplina extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tabela.setForeground(new java.awt.Color(255, 255, 255));
+        tabela.setForeground(new java.awt.Color(0, 0, 0));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -292,25 +317,26 @@ public class FormVerDisciplina extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addContainerGap(189, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(144, 144, 144))
         );
 
         bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 1480, 820));
@@ -401,11 +427,34 @@ public class FormVerDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormVerDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btListarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
+                 String resposta = JOptionPane.showInputDialog(null, "Introduza o nome da disciplina");
+         DisciplinaDao dao = new DisciplinaDao();
+         dao.pesquisa(resposta);
+            DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Disciplina d : dao.pesquisa(resposta)) {
+            modelo.addRow(new Object[]{
+                d.getCodigo(),
+                d.getNome(),
+                d.getCredito(),
+                d.getCargaHoraria(),
+                d.getRegente(),
+                d.getAssistente(),
+             
+            });
+         
+                                               
+    }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     /**
@@ -438,7 +487,11 @@ public class FormVerDisciplina extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormVerDisciplina().setVisible(true);
+                try {
+                    new FormVerDisciplina().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormVerDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

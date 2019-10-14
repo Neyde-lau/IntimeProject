@@ -11,9 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import model.Disciplina;
 import model.Docente;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import util.NewHibernateUtil;
 
 /**
@@ -26,7 +28,7 @@ public class DisciplinaDao extends DAO{
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
-            Disciplina t = (Disciplina) session.load(Disciplina.class, new Integer(codigo)); //rever de modo que usando generics funcione para todas classes
+            Disciplina t = (Disciplina) session.load(Disciplina.class, new Integer(codigo));
             session.delete(t);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
@@ -56,22 +58,21 @@ public class DisciplinaDao extends DAO{
         return t;
     }
             
-                public Disciplina Pesquisa(String nome) {
-        Disciplina d = null;
-        Transaction trns = null;
+  public static List<Disciplina> pesquisa(String nome) {
+        List<Disciplina> t = new ArrayList<Disciplina>();
+        Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
-            trns = session.beginTransaction();
-            String queryString = "from Disciplina where nome = :nome";
-            Query query = session.createQuery(queryString);
-            query.setString("nome", nome);
-            d = (Disciplina) query.uniqueResult();
+            tran = session.beginTransaction();
+           Criteria cr = session.createCriteria(Disciplina.class);
+           cr.add(Restrictions.eq("nome",nome));
+           t = (ArrayList<Disciplina>) cr.list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return d;
+        return t;
     }
         }

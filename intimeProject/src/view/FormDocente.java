@@ -557,12 +557,23 @@ public class FormDocente extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do docente");
-            Docente d = new Docente();
+   
             DocenteDao dao = new DocenteDao();
-            dao.Pesquisa(resposta);
+            dao.pesquisa(resposta);
+            
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+ 
+        for (Docente d : dao.pesquisa(resposta)) {
+            modelo.addRow(new Object[]{
+                d.getCodigo(),
+                d.getNome(),
+                d.getCategoria(),
+                d.getEmail(),
+            });
             
     }//GEN-LAST:event_btPesquisarActionPerformed
-
+    }
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
         try {
             // TODO add your handling code here:

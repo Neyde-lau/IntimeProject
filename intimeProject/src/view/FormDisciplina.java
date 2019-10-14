@@ -7,11 +7,13 @@ package view;
 
 import control.DAO;
 import control.DisciplinaDao;
+import static control.DisciplinaDao.ler;
 import control.DocenteDao;
 
 import model.Disciplina;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +37,8 @@ public class FormDisciplina extends javax.swing.JFrame {
      */
     public FormDisciplina() throws SQLException {
         initComponents();
-
+        preencherCaixaReg();
+        preencherCaixaAssistente();
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         tabela.setRowSorter(new TableRowSorter(modelo));
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -44,7 +47,7 @@ public class FormDisciplina extends javax.swing.JFrame {
         indNotif.setOpaque(true);
         resetColor(new JPanel[]{btEncerrar, btSessao}, new JPanel[]{indEncerrar, indSessao});
     readJTable();
-    adicionaCombo();
+
     }
 
     /**
@@ -63,13 +66,60 @@ public class FormDisciplina extends javax.swing.JFrame {
                 d.getNome(),
                 d.getCredito(),
                 d.getCargaHoraria(),
-                d.getAssistente(),
                 d.getRegente(),
+                d.getAssistente(),
+             
             });
         
     }
     }
-
+    public  ArrayList<String> buscarRegente(){
+     DocenteDao dao = new DocenteDao();
+     ArrayList <Docente> d= new ArrayList<>();
+            d = (ArrayList<Docente>) dao.lerRegente();
+       
+        ArrayList<String> lista = new ArrayList<>();
+       
+        for (Docente d1 : d) {
+            lista.add(d1.getNome());
+    }
+        return lista;
+    }
+    public void preencherCaixaReg(){
+         ArrayList <String> docentes = null;
+         
+       docentes = (ArrayList <String>) buscarRegente();
+               
+         
+         docentes.stream().forEach((docente) -> {
+             comboRegente.addItem(docente);   
+    });
+                 
+                 }
+    
+        public  ArrayList<String> buscarAssistente(){
+     DocenteDao dao = new DocenteDao();
+     ArrayList <Docente> d= new ArrayList<>();
+            d = (ArrayList<Docente>) dao.lerAssistente();
+       
+        ArrayList<String> lista = new ArrayList<>();
+       
+        for (Docente d1 : d) {
+            lista.add(d1.getNome());
+    }
+        return lista;
+    }
+    public void preencherCaixaAssistente(){
+         ArrayList <String> docentes = null;
+         
+       docentes = (ArrayList <String>) buscarAssistente();
+               
+         
+         docentes.stream().forEach((docente) -> {
+             comboAssistente.addItem(docente);   
+    });
+                 
+                 }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,12 +148,14 @@ public class FormDisciplina extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         btRegistar = new java.awt.Button();
-        btActualizar = new java.awt.Button();
         btPesquisar = new java.awt.Button();
         btListar = new java.awt.Button();
         btRemover = new java.awt.Button();
         jLabel6 = new javax.swing.JLabel();
-        comboDocente = new javax.swing.JComboBox();
+        comboRegente = new javax.swing.JComboBox();
+        assistente = new javax.swing.JLabel();
+        comboAssistente = new javax.swing.JComboBox();
+        btActualizar = new java.awt.Button();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -315,22 +367,22 @@ public class FormDisciplina extends javax.swing.JFrame {
         tabela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "CODIGO", "NOME", "CREDITOS", "CARGA HORARIA", "DOCENTE"
+                "CODIGO", "NOME", "CREDITOS", "CARGA HORARIA", "REGENTE", "ASSISTENTE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, true
+                true, true, true, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -355,16 +407,6 @@ public class FormDisciplina extends javax.swing.JFrame {
         btRegistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistarActionPerformed(evt);
-            }
-        });
-
-        btActualizar.setBackground(new java.awt.Color(84, 127, 206));
-        btActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btActualizar.setLabel("Actualizar");
-        btActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btActualizarActionPerformed(evt);
             }
         });
 
@@ -400,11 +442,31 @@ public class FormDisciplina extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Docente");
+        jLabel6.setText("Regente");
 
-        comboDocente.addActionListener(new java.awt.event.ActionListener() {
+        comboRegente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboDocenteActionPerformed(evt);
+                comboRegenteActionPerformed(evt);
+            }
+        });
+
+        assistente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        assistente.setForeground(new java.awt.Color(51, 51, 51));
+        assistente.setText("Assistente");
+
+        comboAssistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAssistenteActionPerformed(evt);
+            }
+        });
+
+        btActualizar.setBackground(new java.awt.Color(84, 127, 206));
+        btActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btActualizar.setLabel("Actualizar");
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
             }
         });
 
@@ -425,29 +487,41 @@ public class FormDisciplina extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textCarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(121, 121, 121)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboRegente, 0, 205, Short.MAX_VALUE)
+                                    .addComponent(textCredito)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(510, 510, 510)
                         .addComponent(btRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(248, 248, 248))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(assistente)
+                        .addGap(31, 31, 31)
+                        .addComponent(comboAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(164, 164, 164))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(241, 241, 241)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,20 +535,22 @@ public class FormDisciplina extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(assistente)
+                    .addComponent(comboAssistente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                    .addComponent(comboRegente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btRegistar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
@@ -532,8 +608,8 @@ public class FormDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_btSessaoMousePressed
     public void limparCampos() {
         textNome.setText("");
-        comboDocente.setSelectedItem("");
-        //textRegente.setText("");
+        comboRegente.setSelectedItem("");
+        comboAssistente.setSelectedItem("");
         textCarga.setText("");
     }
     
@@ -550,9 +626,9 @@ public class FormDisciplina extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btEncerrarMouseClicked
 
-    private void comboDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDocenteActionPerformed
+    private void comboRegenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRegenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboDocenteActionPerformed
+    }//GEN-LAST:event_comboRegenteActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
@@ -565,8 +641,8 @@ public class FormDisciplina extends javax.swing.JFrame {
             d.setNome(textNome.getText());
             d.setCredito(Integer.parseInt(textCredito.getText()));
             d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-           // d.setAssistente(textAssistente.getText());
-            d.setRegente((String) comboDocente.getSelectedItem());
+            d.setAssistente((String) comboAssistente.getSelectedItem());
+            d.setRegente((String) comboRegente.getSelectedItem());
             d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
             dao.apagar(d.getCodigo());
             limparCampos();
@@ -586,30 +662,24 @@ public class FormDisciplina extends javax.swing.JFrame {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
+         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome da disciplina");
+         DisciplinaDao dao = new DisciplinaDao();
+         dao.pesquisa(resposta);
+            DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        for (Disciplina d : dao.pesquisa(resposta)) {
+            modelo.addRow(new Object[]{
+                d.getCodigo(),
+                d.getNome(),
+                d.getCredito(),
+                d.getCargaHoraria(),
+                d.getRegente(),
+                d.getAssistente(),
+             
+            });
+         
     }//GEN-LAST:event_btPesquisarActionPerformed
-
-    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-        // TODO add your handling code here:
-        Disciplina d = new Disciplina();
-
-        DAO<Disciplina> dao = new DAO<>();
-
-        d.setNome(textNome.getText());
-        d.setCredito(Integer.parseInt(textCredito.getText()));
-        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-       // d.setAssistente(textAssistente.getText());
-        d.setRegente((String) comboDocente.getSelectedItem());
-        d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
-        dao.actualizar(d);
-        limparCampos();
-        JOptionPane.showMessageDialog(this, "Actualizado com sucesso");
-        try {
-            readJTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btActualizarActionPerformed
-
+    }
     private void btRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistarActionPerformed
         // TODO add your handling code here:
         Disciplina d = new Disciplina();
@@ -619,8 +689,8 @@ public class FormDisciplina extends javax.swing.JFrame {
         d.setNome(textNome.getText());
         d.setCredito(Integer.parseInt(textCredito.getText()));
         d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
-        //d.setAssistente(.getText());
-        d.setRegente((String) comboDocente.getSelectedItem());
+        d.setAssistente((String) comboAssistente.getSelectedItem());
+        d.setRegente((String) comboRegente.getSelectedItem());
         dao.gravar(d);
         limparCampos();
         JOptionPane.showMessageDialog(this, "Salvo com sucesso");
@@ -638,8 +708,8 @@ public class FormDisciplina extends javax.swing.JFrame {
         textNome.setText(model.getValueAt(i, 1).toString());
         textCredito.setText(model.getValueAt(i,2).toString());
         textCarga.setText(model.getValueAt(i,3).toString());
-        comboDocente.setSelectedItem(model.getValueAt(i, 4).toString());
-        //textAssistente.setText(model.getValueAt(i, 5).toString());
+        comboRegente.setSelectedItem(model.getValueAt(i, 4).toString());
+        comboAssistente.setSelectedItem(model.getValueAt(i, 5).toString());
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void textCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCargaActionPerformed
@@ -649,13 +719,39 @@ public class FormDisciplina extends javax.swing.JFrame {
     private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textNomeActionPerformed
-List<Docente> docentes = DocenteDao.ler();
+
+    private void comboAssistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAssistenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAssistenteActionPerformed
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        // TODO add your handling code here:
+         Disciplina d = new Disciplina();
+
+        DAO<Disciplina> dao = new DAO<>();
+
+        d.setNome(textNome.getText());
+        d.setCredito(Integer.parseInt(textCredito.getText()));
+        d.setCargaHoraria(Integer.parseInt(textCarga.getText()));
+        d.setAssistente((String) comboAssistente.getSelectedItem());
+        d.setRegente((String) comboRegente.getSelectedItem());
+        d.setCodigo((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+        dao.actualizar(d);
+        limparCampos();
+        JOptionPane.showMessageDialog(this, "Actualizado com sucesso");
+        try {
+            readJTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btActualizarActionPerformed
+/*List<Docente> docentes = DocenteDao.ler();
     public void adicionaCombo(){
         
 for(Docente d : docentes){
  comboDocente.addItem(d);
 }
-}
+}*/
     /**
      * @param args the command line arguments
      */
@@ -711,6 +807,7 @@ for(Docente d : docentes){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel assistente;
     private javax.swing.JPanel bg;
     private java.awt.Button btActualizar;
     private javax.swing.JPanel btEncerrar;
@@ -720,7 +817,8 @@ for(Docente d : docentes){
     private java.awt.Button btRegistar;
     private java.awt.Button btRemover;
     private javax.swing.JPanel btSessao;
-    private javax.swing.JComboBox comboDocente;
+    private javax.swing.JComboBox comboAssistente;
+    private javax.swing.JComboBox comboRegente;
     private javax.swing.JLabel encerrar;
     private javax.swing.JLabel fecharSessao;
     private javax.swing.JPanel indEncerrar;

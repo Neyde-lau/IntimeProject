@@ -8,8 +8,10 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 import model.Turma;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import util.NewHibernateUtil;
 
 /**
@@ -52,18 +54,15 @@ public class TurmaDao extends DAO{
         }
         return t;
     }
-
-   /** public Turma Pesquisa(String nome) {
-        Turma t = null;
-        Transaction trns = null;
+      public static List<Turma> pesquisa(String curso) {
+        List<Turma> t = new ArrayList<Turma>();
+        Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
-            trns = session.beginTransaction();
-            String queryString = "from Turma where curso = :curso";
-            Query query = session.createQuery(queryString);
-            query.setString("nome", nome);
-            t = (Turma) query.uniqueResult();
-            
+            tran = session.beginTransaction();
+           Criteria cr = session.createCriteria(Turma.class);
+           cr.add(Restrictions.eq("curso",curso));
+           t = (ArrayList<Turma>) cr.list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -72,5 +71,4 @@ public class TurmaDao extends DAO{
         }
         return t;
     }
-    */
 }

@@ -598,9 +598,23 @@ public void limparCampos(){
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         String resposta = JOptionPane.showInputDialog(null, "Introduza o nome do utilizador");
-        Utilizador u = new Utilizador();
+       
         UtilizadorDao dao = new UtilizadorDao();
-        dao.Pesquisa(resposta);
+        dao.pesquisa(resposta);
+        
+               DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        for (Utilizador u : dao.pesquisa(resposta)) {
+            modelo.addRow(new Object[]{
+                u.getCodigo(),
+                u.getNome(),
+                u.getEntidade(),
+                 u.getSenha(),
+                u.getEmail(),
+                
+               });
+        }
+        
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
@@ -621,7 +635,7 @@ public void limparCampos(){
         UtilizadorDao dao = new UtilizadorDao();
         u.setNome(textNome.getText());
         u.setEntidade((String) cbEntidade.getSelectedItem());
-          u.setSenha(textSenha.getText());
+        u.setSenha(textSenha.getText());
         u.setEmail(textEmail.getText());
         u.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
         dao.apagar(u.getCodigo());

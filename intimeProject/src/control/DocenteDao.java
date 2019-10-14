@@ -9,9 +9,11 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 import model.Docente;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import util.NewHibernateUtil;
 
 /**
@@ -34,21 +36,40 @@ public class DocenteDao extends DAO{
         }
         return t;
     }
-    
-        public static List<Docente> lerNome() {
-        List<Docente> t = new ArrayList<Docente>();
+
+                 public static List<Docente> lerRegente() {
+        List<Docente> doc = new ArrayList<Docente>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
-            t = session.createQuery("SELECT Docente.codigo, Docente.nome from Docente").list();
+           Criteria cr = session.createCriteria(Docente.class);
+           cr.add(Restrictions.eq("categoria","Regente"));
+           doc = (ArrayList<Docente>) cr.list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return t;
+        return doc;
+    }
+        public static List<Docente> lerAssistente() {
+        List<Docente> doc = new ArrayList<Docente>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+           Criteria cr = session.createCriteria(Docente.class);
+           cr.add(Restrictions.eq("categoria","Assistente"));
+           doc = (ArrayList<Docente>) cr.list();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return doc;
     }
     
         public void apagar(int codigo) {
@@ -70,22 +91,21 @@ public class DocenteDao extends DAO{
         }
     }
     
-        public Docente Pesquisa(String nome) {
-        Docente d = null;
-        Transaction trns = null;
+        public static List<Docente> pesquisa(String nome) {
+        List<Docente> doc = new ArrayList<Docente>();
+        Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
-            trns = session.beginTransaction();
-            String queryString = "from Docente where nome = :nome";
-            Query query = session.createQuery(queryString);
-            query.setString("nome", nome);
-            d = (Docente) query.uniqueResult();
+            tran = session.beginTransaction();
+           Criteria cr = session.createCriteria(Docente.class);
+           cr.add(Restrictions.eq("nome",nome));
+           doc = (ArrayList<Docente>) cr.list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return d;
+        return doc;
     }
 }
