@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-Oct-2019 18:01:41 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Notificacoes" table="notificacoes" catalog="dbintime" optimistic-lock="version">
+        <id name="codigo" type="int">
+            <column name="codigo" />
+            <generator class="assigned" />
+        </id>
+        <property name="destinatario" type="string">
+            <column name="destinatario" />
+        </property>
+        <property name="assunto" type="string">
+            <column name="assunto" length="500" />
+        </property>
+        <property name="corpo" type="string">
+            <column name="corpo" length="1000" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 15-Oct-2019 18:01:41 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.Horario" table="horario" catalog="dbintime" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+    <class name="model.Horariopresencas" table="horariopresencas" catalog="dbintime" optimistic-lock="version">
+        <id name="id" type="int">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
-        <property name="codigoTurma" type="int">
+        <property name="codigoTurma" type="string">
             <column name="codigoTurma" not-null="true" />
         </property>
         <property name="segunda" type="string">

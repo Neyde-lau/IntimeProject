@@ -8,10 +8,12 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="model/Horario.hbm.xml"/>
     <mapping resource="model/Utilizador.hbm.xml"/>
     <mapping resource="model/Disciplina.hbm.xml"/>
+    <mapping resource="model/Notificacoes.hbm.xml"/>
     <mapping resource="model/Docente.hbm.xml"/>
+    <mapping resource="model/Horariopresencas.hbm.xml"/>
+    <mapping resource="model/Horario.hbm.xml"/>
     <mapping resource="model/Turma.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
