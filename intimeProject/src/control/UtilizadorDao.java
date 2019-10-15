@@ -26,7 +26,8 @@ import util.NewHibernateUtil;
  * @author user
  */
 public class UtilizadorDao extends DAO {
-            public void apagar(int codigo) {
+
+    public void apagar(int codigo) {
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
@@ -44,7 +45,8 @@ public class UtilizadorDao extends DAO {
             session.close();
         }
     }
-          public List<Utilizador> ler() {
+
+    public List<Utilizador> ler() {
         List<Utilizador> t = new ArrayList<Utilizador>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -59,15 +61,16 @@ public class UtilizadorDao extends DAO {
         }
         return t;
     }
-        public static List<Utilizador> pesquisa(String nome) {
+
+    public static List<Utilizador> pesquisa(String nome) {
         List<Utilizador> ut = new ArrayList<Utilizador>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
-           Criteria cr = session.createCriteria(Utilizador.class);
-           cr.add(Restrictions.eq("nome",nome));
-           ut = (ArrayList<Utilizador>) cr.list();
+            Criteria cr = session.createCriteria(Utilizador.class);
+            cr.add(Restrictions.eq("nome", nome));
+            ut = (ArrayList<Utilizador>) cr.list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -76,77 +79,47 @@ public class UtilizadorDao extends DAO {
         }
         return ut;
     }
-        /*  public static ArrayList<Produto> listarProdutos() {
-        Session s = FabricaSessoes.getSessionFactory().openSession();
-        ArrayList<Produto> produtos = new ArrayList<>();
-        try {
-            Transaction t = s.beginTransaction();
-            Criteria cr = s.createCriteria(Produto.class);
+    /*  public static ArrayList<Produto> listarProdutos() {
+     Session s = FabricaSessoes.getSessionFactory().openSession();
+     ArrayList<Produto> produtos = new ArrayList<>();
+     try {
+     Transaction t = s.beginTransaction();
+     Criteria cr = s.createCriteria(Produto.class);
             
-//            cr.addOrder(Order.desc("quantidade"));
-//            cr.add(Restrictions.eq("quantidade", 35));
-//            cr.add(Restrictions.or(Restrictions.like("nome", "Sumo%"), Restrictions.gt("quantidade", 35)));
-//            cr.add(Restrictions.like("nome", "Sumo%"));
-//            cr.add(Restrictions.gt("quantidade", 35));
-//            cr.add(Restrictions.ge("quantidade",21));
+     //            cr.addOrder(Order.desc("quantidade"));
+     //            cr.add(Restrictions.eq("quantidade", 35));
+     //            cr.add(Restrictions.or(Restrictions.like("nome", "Sumo%"), Restrictions.gt("quantidade", 35)));
+     //            cr.add(Restrictions.like("nome", "Sumo%"));
+     //            cr.add(Restrictions.gt("quantidade", 35));
+     //            cr.add(Restrictions.ge("quantidade",21));
 
-            produtos = (ArrayList<Produto>) cr.list();
-            t.commit();
-            return produtos;
-        } catch (Exception ex) {
-            System.out.println("Erro: " + ex);
-            return null;
-        } finally {
-            s.close();
-        }
-    }*/    
-          
-     /* public boolean autenticarUtilizador(String nome, String senha) {
-        {
-            Session session = NewHibernateUtil.getSessionFactory().openSession();
-            Transaction tx = null;
-            try {
-                tx = session.beginTransaction();
-                List<?> lst = session.createQuery("from Utilizador").list();
-                for (Iterator<?> iterator
-                        = lst.iterator(); iterator.hasNext();) {
-                    Utilizador ut = (Utilizador) iterator.next();
-                    if (ut.getNome().equals(nome) && ut.getSenha().equals(senha)) {
-                        JOptionPane.showMessageDialog(null, "Credenciais correctas!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "nome ou senha incorrectos!");
-                    }
-                }
-                tx.commit();
-                return true;
-            } catch (HibernateException e) {
-                if (tx != null) {
-                    tx.rollback();
-                }
-                e.printStackTrace();
-            } finally {
-                session.close();
-            }
-        }
-        return false;
-    }*/ 
-      
-              public boolean autenticarUtilizador(String nome,String senha) {
+     produtos = (ArrayList<Produto>) cr.list();
+     t.commit();
+     return produtos;
+     } catch (Exception ex) {
+     System.out.println("Erro: " + ex);
+     return null;
+     } finally {
+     s.close();
+     }
+     }*/
+
+    public boolean autenticarUtilizador(String nome, String senha) {
         List<Utilizador> ut = new ArrayList<Utilizador>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try {
             tran = session.beginTransaction();
-           Criteria cr = session.createCriteria(Utilizador.class);
-           cr.add(Restrictions.eq("nome",nome));
-           cr.add(Restrictions.eq("senha",senha));
-               Utilizador u = (Utilizador) cr.uniqueResult();
-               if (u.getNome().equals(nome) && u.getSenha().equals(senha)) {
-                        JOptionPane.showMessageDialog(null, "Credenciais correctas!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "nome ou senha incorrectos!");
-                    }
-              return true;
+            Criteria cr = session.createCriteria(Utilizador.class);
+            cr.add(Restrictions.eq("nome", nome));
+            cr.add(Restrictions.eq("senha", senha));
+            Utilizador u = (Utilizador) cr.uniqueResult();
+            if (u.getNome().equals(nome) && u.getSenha().equals(senha)) {
+                JOptionPane.showMessageDialog(null, "Credenciais correctas!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Nome ou Senha incorrectos!");
+            }
+
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -154,5 +127,24 @@ public class UtilizadorDao extends DAO {
             session.close();
         }
         return false;
+    }
+        public String buscarCategoria(String nome, String senha) {
+        List<Utilizador> ut = new ArrayList<Utilizador>();
+        Transaction tran = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        try {
+            tran = session.beginTransaction();
+            Criteria cr = session.createCriteria(Utilizador.class);
+            cr.add(Restrictions.eq("entidade", nome));
+            cr.add(Restrictions.eq("senha", senha));
+            Utilizador u = (Utilizador) cr.uniqueResult();
+
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return null;
     }
 }
