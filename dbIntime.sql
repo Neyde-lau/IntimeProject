@@ -66,6 +66,37 @@ CREATE TABLE `horario` (
 
 /*Data for the table `horario` */
 
+/*Table structure for table `horariopresencas` */
+
+DROP TABLE IF EXISTS `horariopresencas`;
+
+CREATE TABLE `horariopresencas` (
+  `id` int(255) NOT NULL,
+  `codigoTurma` varchar(255) NOT NULL,
+  `segunda` varchar(255) DEFAULT NULL,
+  `terca` varchar(255) DEFAULT NULL,
+  `quarta` varchar(255) DEFAULT NULL,
+  `quinta` varchar(255) DEFAULT NULL,
+  `sexta` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `horariopresencas` */
+
+/*Table structure for table `notificacoes` */
+
+DROP TABLE IF EXISTS `notificacoes`;
+
+CREATE TABLE `notificacoes` (
+  `codigo` int(255) NOT NULL,
+  `destinatario` varchar(255) DEFAULT NULL,
+  `assunto` varchar(500) DEFAULT NULL,
+  `corpo` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `notificacoes` */
+
 /*Table structure for table `turma` */
 
 DROP TABLE IF EXISTS `turma`;
@@ -78,9 +109,11 @@ CREATE TABLE `turma` (
   `nivel` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `turma` */
+
+insert  into `turma`(`codigo`,`curso`,`tutor`,`regime`,`nivel`,`email`) values (1,'CIG','Paula','Laboral','I','Paula@gmail.com');
 
 /*Table structure for table `utilizador` */
 
