@@ -46,7 +46,7 @@ public class UtilizadorDao extends DAO {
         }
     }
 
-    public List<Utilizador> ler() {
+    public static List<Utilizador> ler() {
         List<Utilizador> t = new ArrayList<Utilizador>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -116,10 +116,11 @@ public class UtilizadorDao extends DAO {
             Utilizador u = (Utilizador) cr.uniqueResult();
             if (u.getNome().equals(nome) && u.getSenha().equals(senha)) {
                 JOptionPane.showMessageDialog(null, "Credenciais correctas!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Nome ou Senha incorrectos!");
-            }
+            //} else if(u.getNome().equals(nome) || u.getSenha().equals(senha)) {
+              //  JOptionPane.showMessageDialog(null, "Nome ou Senha incorrectos!");
+                 //  return true;
 
+            }
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -129,6 +130,7 @@ public class UtilizadorDao extends DAO {
         return false;
     }
         public String buscarCategoria(String nome, String senha) {
+        String categoria = "";
         List<Utilizador> ut = new ArrayList<Utilizador>();
         Transaction tran = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -137,8 +139,9 @@ public class UtilizadorDao extends DAO {
             Criteria cr = session.createCriteria(Utilizador.class);
             cr.add(Restrictions.eq("entidade", nome));
             cr.add(Restrictions.eq("senha", senha));
-            Utilizador u = (Utilizador) cr.uniqueResult();
-
+            cr.add(Restrictions.eq("entidade",categoria));
+           // Utilizador u = (Utilizador) cr.uniqueResult();
+         return categoria;
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {

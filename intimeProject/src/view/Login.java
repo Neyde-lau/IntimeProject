@@ -8,8 +8,10 @@ package view;
 import control.DAO;
 import control.UtilizadorDao;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Utilizador;
 
 /**
@@ -220,16 +222,28 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
             Utilizador u = new Utilizador();
             UtilizadorDao dao = new UtilizadorDao();
-         if(dao.autenticarUtilizador(textNome.getText(),textSenha.getText())){
-             if(u.getEntidade().equals("docente")){
-                 try {
-                     FormUser fu = new FormUser();
-                 } catch (SQLException ex) {
-                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-             }else if(u.getEntidade().equals("turma")){
-                 
+            List <Utilizador> ut = UtilizadorDao.ler();
+            for (Utilizador ut1 : ut) {
+             if(dao.autenticarUtilizador(textNome.getText(),textSenha.getText())){
+            String categoria = dao.buscarCategoria(textNome.getText(),textSenha.getText());
+             if(categoria.equals("Docente")){
+                 MenuDocente md = new MenuDocente();
+                 md.setVisible(true);
+             }else if(categoria.equals("Turma")){
+               MenuTurma mt = new MenuTurma(); 
+               mt.setVisible(true);
+             }else if(categoria.equals("Administrador")){
+                MenuAdmin ma = new MenuAdmin();
+                ma.setVisible(true);
+             }else {
+                JOptionPane.showMessageDialog(null, "Credenciais invalidas");
+                textNome.setText("");
+                textSenha.setText("");
              }
+        }
+            
+            
+        
          }   
         
         

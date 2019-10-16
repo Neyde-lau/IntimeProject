@@ -6,6 +6,9 @@
 package view;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -395,6 +398,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         btUtilizador.setBackground(new java.awt.Color(255, 255, 255));
         btUtilizador.setForeground(new java.awt.Color(0, 0, 0));
         btUtilizador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/icons8-user-100.png"))); // NOI18N
+        btUtilizador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUtilizadorActionPerformed(evt);
+            }
+        });
 
         btDisciplina.setBackground(new java.awt.Color(255, 255, 255));
         btDisciplina.setForeground(new java.awt.Color(102, 102, 102));
@@ -513,6 +521,18 @@ public class MenuAdmin extends javax.swing.JFrame {
         resetColor(new JPanel[]{btEncerrar, btNotif}, new JPanel[]{indEncerrar, indNotif});
     }//GEN-LAST:event_btSessaoMousePressed
 
+    private void btUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUtilizadorActionPerformed
+        
+        try {
+            // TODO add your handling code here:
+            FormUser fu = new FormUser();
+            fu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btUtilizadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -524,7 +544,7 @@ public class MenuAdmin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
